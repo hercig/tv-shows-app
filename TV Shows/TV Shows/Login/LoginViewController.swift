@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class LoginViewController: UIViewController {
     
@@ -16,16 +17,20 @@ class LoginViewController: UIViewController {
     var numberOfTaps = 0
     
     func showSpinner(for delay: Int) -> Void {
+        
         self.buttonElement.isEnabled = false
         self.spinner.hidesWhenStopped = true
         self.spinner.startAnimating()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) {
             self.spinner.stopAnimating()
             self.buttonElement.isEnabled = true
         }
+
     }
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.showSpinner(for: 3)
         
