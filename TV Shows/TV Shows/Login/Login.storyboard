@@ -28,12 +28,14 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urZ-iH-7QX">
                                 <rect key="frame" x="127" y="468" width="136" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.46881230245645478" green="0.63259811375532227" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.4688123025" green="0.63259811379999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="23"/>
                                 <color key="tintColor" red="0.99374259557789257" green="1" blue="0.97666168563509959" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Tap me!">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" systemColor="systemIndigoColor"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="0.4688123025" green="0.63259811379999997" blue="1" alpha="0.59820000856917421" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -43,6 +45,10 @@
                                     <action selector="buttonTap:" destination="Qcf-uB-NnR" eventType="touchUpInside" id="d2Z-Ns-eCa"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="urF-MP-ANv">
+                                <rect key="frame" x="185" y="704" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gSg-Fv-yrN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -50,6 +56,7 @@
                     <connections>
                         <outlet property="buttonElement" destination="urZ-iH-7QX" id="tSs-CX-BIR"/>
                         <outlet property="labelElement" destination="brl-Da-jM8" id="mjw-DA-Lnd"/>
+                        <outlet property="spinner" destination="urF-MP-ANv" id="e8B-zh-VaX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kjw-mV-7SD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
