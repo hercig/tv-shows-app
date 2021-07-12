@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qcf-uB-NnR">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -15,20 +15,24 @@
             <objects>
                 <viewController id="Qcf-uB-NnR" customClass="LoginViewController" customModule="TV_Shows" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cIy-Z8-2Qu">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of taps: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brl-Da-jM8">
-                                <rect key="frame" x="52" y="348" width="286" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of taps: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brl-Da-jM8">
+                                <rect key="frame" x="50" y="250" width="314" height="35"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urZ-iH-7QX">
-                                <rect key="frame" x="127" y="468" width="136" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="urF-MP-ANv">
+                                <rect key="frame" x="197" y="325" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urZ-iH-7QX">
+                                <rect key="frame" x="125" y="554" width="164" height="37"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="164" id="nrn-qL-iGk"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="23"/>
                                 <color key="tintColor" red="0.99374259557789257" green="1" blue="0.97666168563509959" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Tap me!">
@@ -45,13 +49,18 @@
                                     <action selector="buttonTap:" destination="Qcf-uB-NnR" eventType="touchUpInside" id="d2Z-Ns-eCa"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="urF-MP-ANv">
-                                <rect key="frame" x="185" y="704" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gSg-Fv-yrN"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="brl-Da-jM8" firstAttribute="leading" secondItem="gSg-Fv-yrN" secondAttribute="leading" constant="50" id="5av-ng-cAd"/>
+                            <constraint firstItem="brl-Da-jM8" firstAttribute="top" secondItem="gSg-Fv-yrN" secondAttribute="top" constant="250" id="K0d-tU-oiu"/>
+                            <constraint firstItem="urZ-iH-7QX" firstAttribute="centerX" secondItem="cIy-Z8-2Qu" secondAttribute="centerX" id="YUa-uS-MLV"/>
+                            <constraint firstItem="gSg-Fv-yrN" firstAttribute="trailing" secondItem="brl-Da-jM8" secondAttribute="trailing" constant="50" id="nEz-xV-WAg"/>
+                            <constraint firstItem="urF-MP-ANv" firstAttribute="centerX" secondItem="cIy-Z8-2Qu" secondAttribute="centerX" id="qi1-lz-gBr"/>
+                            <constraint firstItem="urF-MP-ANv" firstAttribute="top" secondItem="brl-Da-jM8" secondAttribute="bottom" constant="40" id="sSK-m3-4kY"/>
+                            <constraint firstItem="gSg-Fv-yrN" firstAttribute="bottom" secondItem="urZ-iH-7QX" secondAttribute="bottom" constant="145" id="vOG-Fz-30J"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="buttonElement" destination="urZ-iH-7QX" id="tSs-CX-BIR"/>
