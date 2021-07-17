@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qcf-uB-NnR">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,20 +13,20 @@
             <objects>
                 <viewController id="Qcf-uB-NnR" customClass="LoginViewController" customModule="TV_Shows" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cIy-Z8-2Qu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of taps: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brl-Da-jM8">
-                                <rect key="frame" x="50" y="250" width="314" height="35"/>
+                                <rect key="frame" x="50" y="250" width="500" height="35"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="urF-MP-ANv">
-                                <rect key="frame" x="197" y="325" width="20" height="20"/>
+                                <rect key="frame" x="290" y="325" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urZ-iH-7QX">
-                                <rect key="frame" x="125" y="554" width="164" height="37"/>
+                                <rect key="frame" x="218" y="418" width="164" height="37"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="164" id="nrn-qL-iGk"/>
@@ -63,9 +61,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="buttonElement" destination="urZ-iH-7QX" id="tSs-CX-BIR"/>
-                        <outlet property="labelElement" destination="brl-Da-jM8" id="mjw-DA-Lnd"/>
+                        <outlet property="incrementButton" destination="urZ-iH-7QX" id="tSs-CX-BIR"/>
                         <outlet property="spinner" destination="urF-MP-ANv" id="e8B-zh-VaX"/>
+                        <outlet property="titleLabel" destination="brl-Da-jM8" id="mjw-DA-Lnd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kjw-mV-7SD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

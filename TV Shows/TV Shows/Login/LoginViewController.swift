@@ -8,44 +8,53 @@
 import UIKit
 import SVProgressHUD
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
-    @IBOutlet weak var labelElement: UILabel!
-    @IBOutlet weak var buttonElement: UIButton!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var incrementButton: UIButton!
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
     
-    var numberOfTaps = 0
+    private var numberOfTaps = 0
     
-    func showSpinner(for delay: Int) -> Void {
+    
+    private func showSpinner(for delay: Int) {
         
-        self.buttonElement.isEnabled = false
-        self.spinner.hidesWhenStopped = true
-        self.spinner.startAnimating()
+        incrementButton.isEnabled = false
+        spinner.hidesWhenStopped = true
+        spinner.startAnimating()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) {
-            self.spinner.stopAnimating()
-            self.buttonElement.isEnabled = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) { [weak self] in
+            self?.spinner.stopAnimating()
+            self?.incrementButton.isEnabled = true
         }
 
     }
 
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.showSpinner(for: 3)
-        
-        buttonElement.layer.cornerRadius = 10
-        buttonElement.clipsToBounds = true
+        decorateButton()
+        showSpinner(for: 3)
         
     }
     
-    @IBAction func buttonTap(_ sender: Any) {
+    
+    private func decorateButton() {
         
-        self.showSpinner(for: 2)
+        incrementButton.layer.cornerRadius = 10
+        incrementButton.clipsToBounds = true
+        
+    }
+    
+    
+    @IBAction func buttonTap() {
+        
+        showSpinner(for: 2)
         
         numberOfTaps += 1
-        labelElement.text = "Number of taps: \(numberOfTaps)"
+        titleLabel.text = "Number of taps: \(numberOfTaps)"
       
     }
+    
 }
-
