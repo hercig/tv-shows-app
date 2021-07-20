@@ -45,22 +45,20 @@ final class LoginViewController: UIViewController {
         roundButtonEdges(of: loginButton)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
     }
-    
-    @IBAction private func rememberMeButtonTap(_ sender: Any) {
-        
-        if rememberMeIsActive {
-            rememberMeIsActive = !rememberMeIsActive
-            rememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
-        } else {
-            rememberMeIsActive = !rememberMeIsActive
-            rememberMeButton.setImage(UIImage(named: "ic-checkbox-selected"), for: .normal)
-        }
-    }
-    
     
     private func editTextFieldStyle(of field: UITextField, placeholder: String = "") {
         
@@ -80,4 +78,29 @@ final class LoginViewController: UIViewController {
         button.layer.cornerRadius = 21.5
         button.clipsToBounds = true
     }
+    
+    @IBAction private func rememberMeButtonTap(_ sender: Any) {
+        
+        if rememberMeIsActive {
+            rememberMeIsActive = !rememberMeIsActive
+            rememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
+        } else {
+            rememberMeIsActive = !rememberMeIsActive
+            rememberMeButton.setImage(UIImage(named: "ic-checkbox-selected"), for: .normal)
+        }
+    }
+    
+    @IBAction private func didPressLoginButton(_ sender: Any) {
+        
+        let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+        let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+        
+        navigationController?.pushViewController(homeViewController, animated: true)
+    }
+    
+    @IBAction private func didPressRegisterButton(_ sender: Any) {
+        didPressLoginButton(sender)
+    }
+    
+    
 }
