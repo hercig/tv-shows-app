@@ -12,8 +12,6 @@
 		4E29499726A333CF00982A44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E29499626A333CF00982A44 /* LaunchScreen.storyboard */; };
 		4E2949BA26A34CA700982A44 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2949B926A34CA700982A44 /* Login.storyboard */; };
 		4E2949BC26A34CC100982A44 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2949BB26A34CC100982A44 /* LoginViewController.swift */; };
-		4E404ED1269C5B1E0066A26A /* Login2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E404ED0269C5B1E0066A26A /* Login2.storyboard */; };
-		4E404ED3269C5B350066A26A /* LoginViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E404ED2269C5B350066A26A /* LoginViewController2.swift */; };
 		E011A81AFF60E51DBC98F7CA /* Pods_TV_Shows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217FA2252093F851D9237ECC /* Pods_TV_Shows.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,8 +25,6 @@
 		4E29499626A333CF00982A44 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E2949B926A34CA700982A44 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4E2949BB26A34CC100982A44 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		4E404ED0269C5B1E0066A26A /* Login2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login2.storyboard; sourceTree = "<group>"; };
-		4E404ED2269C5B350066A26A /* LoginViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController2.swift; sourceTree = "<group>"; };
 		62F6EF5B27709957104F8D0C /* Pods-TV Shows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TV Shows.release.xcconfig"; path = "Target Support Files/Pods-TV Shows/Pods-TV Shows.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				4E2949B826A34C8D00982A44 /* Login */,
-				4E404ECF269C5AC30066A26A /* Login2 */,
 				4E02610A26975F3C005FCF82 /* AppDelegate.swift */,
 				4E02611326975F3E005FCF82 /* Assets.xcassets */,
 				4E02611826975F3E005FCF82 /* Info.plist */,
@@ -82,15 +77,6 @@
 				4E2949BB26A34CC100982A44 /* LoginViewController.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		4E404ECF269C5AC30066A26A /* Login2 */ = {
-			isa = PBXGroup;
-			children = (
-				4E404ED0269C5B1E0066A26A /* Login2.storyboard */,
-				4E404ED2269C5B350066A26A /* LoginViewController2.swift */,
-			);
-			path = Login2;
 			sourceTree = "<group>";
 		};
 		9C98E69AAE67A08803AD1498 /* Pods */ = {
@@ -171,7 +157,6 @@
 			files = (
 				4E2949BA26A34CA700982A44 /* Login.storyboard in Resources */,
 				4E29499726A333CF00982A44 /* LaunchScreen.storyboard in Resources */,
-				4E404ED1269C5B1E0066A26A /* Login2.storyboard in Resources */,
 				4E02611426975F3E005FCF82 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +211,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E2949BC26A34CC100982A44 /* LoginViewController.swift in Sources */,
-				4E404ED3269C5B350066A26A /* LoginViewController2.swift in Sources */,
 				4E02610B26975F3C005FCF82 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
