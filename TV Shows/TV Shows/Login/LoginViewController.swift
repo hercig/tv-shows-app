@@ -8,9 +8,9 @@
 import UIKit
 
 
-class CustomTextField: UITextField {
+final class CustomTextField: UITextField {
 
-    let padding = UIEdgeInsets(top: 0, left: 16, bottom: 13.5, right: 16);
+    private let padding = UIEdgeInsets(top: 0, left: 16, bottom: 10, right: 16);
 
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: padding)
@@ -25,21 +25,24 @@ class CustomTextField: UITextField {
     }
 }
 
+
 final class LoginViewController: UIViewController {
     
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var rememberMeButton: UIButton!
+    @IBOutlet private weak var loginButton: UIButton!
     
-    var rememberMeIsActive = false
+    private var rememberMeIsActive = false
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        editTextFieldStyle(for: emailTextField, placeholder: "Email")
-        editTextFieldStyle(for: passwordTextField, placeholder: "Password")
+        editTextFieldStyle(of: emailTextField, placeholder: "Email")
+        editTextFieldStyle(of: passwordTextField, placeholder: "Password")
         passwordTextField.isSecureTextEntry = true
         
+        roundButtonEdges(of: loginButton)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -47,7 +50,8 @@ final class LoginViewController: UIViewController {
         super.touchesBegan(touches, with: event)
     }
     
-    @IBAction func rememberMeButtonTap(_ sender: Any) {
+    @IBAction private func rememberMeButtonTap(_ sender: Any) {
+        
         if rememberMeIsActive {
             rememberMeIsActive = !rememberMeIsActive
             rememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
@@ -58,18 +62,22 @@ final class LoginViewController: UIViewController {
     }
     
     
-    private func editTextFieldStyle(for field: UITextField, placeholder: String = "") {
+    private func editTextFieldStyle(of field: UITextField, placeholder: String = "") {
         
+        // Changing placeholder style
         let placeholderText = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
         field.attributedPlaceholder = placeholderText
         
+        // Adding bottom border line
         field.layer.shadowColor = UIColor.white.cgColor
         field.layer.shadowOffset = CGSize(width: 0, height: 1)
         field.layer.shadowOpacity = 1
         field.layer.shadowRadius = 0
-        
     }
     
-    
-    
+    private func roundButtonEdges(of button: UIButton) {
+        
+        button.layer.cornerRadius = 21.5
+        button.clipsToBounds = true
+    }
 }
