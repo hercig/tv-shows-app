@@ -19,6 +19,7 @@ final class LoginViewController: UIViewController {
     
     private var rememberMeIsActive = false
     var userResponse: UserResponse? = nil
+    let network = Network()
     
     
     override func viewDidLoad() {
@@ -73,39 +74,19 @@ final class LoginViewController: UIViewController {
         SVProgressHUD.show()
         
         let params: [String: String] = [
-            
-//            TODO: Uncomment before commit
-
             "email": getTextFielsValue(of: emailTextField) ?? "",
             "password": getTextFielsValue(of: passwordTextField) ?? ""
-            
-//            "email": "fi.hercig@gmail.com",
-//            "password": "foobar"
         ]
         
-        AF
-            .request(
-                "https://tv-shows.infinum.academy/users/sign_in",
-                method: .post,
-                parameters: params,
-                encoder: JSONParameterEncoder.default
-            )
-            .validate()
-            .responseDecodable(of: UserResponse.self) { [weak self] response in
-                
-                switch response.result {
-                    case .success(_):
-                        SVProgressHUD.showSuccess(withStatus: "Success!")
-                        
-                        let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
-                        let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-                        self?.navigationController?.pushViewController(homeViewController, animated: true)
-                        
-                    case .failure(let error):
-                        SVProgressHUD.showError(withStatus: "Error: \(error.errorDescription!)")
-                }
+        network.sendRequest(on: "/users/sign_in", with: params, statusHandler: { [weak self] responseStatus in
+            if responseStatus == 1 {
+                let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+                self?.navigationController?.pushViewController(homeViewController, animated: true)
             }
+        })
     }
+    
     
     @IBAction private func didPressRegisterButton(_ sender: Any) {
         
@@ -117,30 +98,12 @@ final class LoginViewController: UIViewController {
             "password_confirmation": getTextFielsValue(of: passwordTextField) ?? ""
         ]
         
-        AF
-            .request(
-                "https://tv-shows.infinum.academy/users",
-                method: .post,
-                parameters: params,
-                encoder: JSONParameterEncoder.default
-            )
-            .validate()
-            .responseJSON(completionHandler: { [weak self] response in
-                
-                switch response.result {
-                case .success(_):
-                    
-                    SVProgressHUD.showSuccess(withStatus: "Success!")
-                    
-                    let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
-                    let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-                    self?.navigationController?.pushViewController(homeViewController, animated: true)
-                    
-                case .failure(let error):
-                    SVProgressHUD.showError(withStatus: "Error: \(error.errorDescription!)")
-                }
-            })
+        network.sendRequest(on: "/users", with: params, statusHandler: { [weak self] responseStatus in
+            if responseStatus == 1 {
+                let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+                self?.navigationController?.pushViewController(homeViewController, animated: true)
+            }
+        })
     }
-    
-    
 }

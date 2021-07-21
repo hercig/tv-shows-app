@@ -17,6 +17,7 @@
 		4E91E4E626A6E84100A6C7FE /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E91E4E526A6E84100A6C7FE /* CustomTextField.swift */; };
 		4E91E4E826A6E8DB00A6C7FE /* LoginViewStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E91E4E726A6E8DB00A6C7FE /* LoginViewStyles.swift */; };
 		4E91E4EA26A7181200A6C7FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E91E4E926A7181200A6C7FE /* User.swift */; };
+		4EB4847626A829C2008C4982 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB4847526A829C2008C4982 /* Networking.swift */; };
 		E011A81AFF60E51DBC98F7CA /* Pods_TV_Shows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217FA2252093F851D9237ECC /* Pods_TV_Shows.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		4E91E4E526A6E84100A6C7FE /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		4E91E4E726A6E8DB00A6C7FE /* LoginViewStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewStyles.swift; sourceTree = "<group>"; };
 		4E91E4E926A7181200A6C7FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4EB4847526A829C2008C4982 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		62F6EF5B27709957104F8D0C /* Pods-TV Shows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TV Shows.release.xcconfig"; path = "Target Support Files/Pods-TV Shows/Pods-TV Shows.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 		4E02610926975F3C005FCF82 /* TV Shows */ = {
 			isa = PBXGroup;
 			children = (
+				4EB4847426A8297D008C4982 /* Services */,
 				4E91E4DE26A6C1DF00A6C7FE /* Home */,
 				4E2949B826A34C8D00982A44 /* Login */,
 				4E02610A26975F3C005FCF82 /* AppDelegate.swift */,
@@ -100,6 +103,14 @@
 				4E91E4E326A6D6E600A6C7FE /* Home.storyboard */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		4EB4847426A8297D008C4982 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4EB4847526A829C2008C4982 /* Networking.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		9C98E69AAE67A08803AD1498 /* Pods */ = {
@@ -237,6 +248,7 @@
 				4E91E4E626A6E84100A6C7FE /* CustomTextField.swift in Sources */,
 				4E2949BC26A34CC100982A44 /* LoginViewController.swift in Sources */,
 				4E91E4EA26A7181200A6C7FE /* User.swift in Sources */,
+				4EB4847626A829C2008C4982 /* Networking.swift in Sources */,
 				4E91E4E826A6E8DB00A6C7FE /* LoginViewStyles.swift in Sources */,
 				4E02610B26975F3C005FCF82 /* AppDelegate.swift in Sources */,
 				4E91E4E226A6C20C00A6C7FE /* HomeViewController.swift in Sources */,
