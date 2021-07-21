@@ -8,10 +8,13 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    @IBOutlet private weak var testLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        testLabel.text = "Hello \(userRespose.user.email)"
         // Do any additional setup after loading the view.
     }
 

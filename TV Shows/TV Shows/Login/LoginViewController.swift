@@ -6,24 +6,8 @@
 //
 
 import UIKit
-
-
-final class CustomTextField: UITextField {
-
-    private let padding = UIEdgeInsets(top: 0, left: 16, bottom: 10, right: 16);
-
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-
-    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-}
+import Alamofire
+import SVProgressHUD
 
 
 final class LoginViewController: UIViewController {
@@ -34,6 +18,8 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var loginButton: UIButton!
     
     private var rememberMeIsActive = false
+    var userResponse: UserResponse? = nil
+    
     
     override func viewDidLoad() {
         
@@ -43,41 +29,33 @@ final class LoginViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         
         roundButtonEdges(of: loginButton)
+        SVProgressHUD.setDefaultMaskType(.black)
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
     }
     
-    private func editTextFieldStyle(of field: UITextField, placeholder: String = "") {
-        
-        // Changing placeholder style
-        let placeholderText = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
-        field.attributedPlaceholder = placeholderText
-        
-        // Adding bottom border line
-        field.layer.shadowColor = UIColor.white.cgColor
-        field.layer.shadowOffset = CGSize(width: 0, height: 1)
-        field.layer.shadowOpacity = 1
-        field.layer.shadowRadius = 0
+    
+    private func getTextFielsValue(of textField: UITextField) -> String? {
+        let value = textField.text
+        return value
     }
     
-    private func roundButtonEdges(of button: UIButton) {
-        
-        button.layer.cornerRadius = 21.5
-        button.clipsToBounds = true
-    }
     
     @IBAction private func rememberMeButtonTap(_ sender: Any) {
         
@@ -92,14 +70,76 @@ final class LoginViewController: UIViewController {
     
     @IBAction private func didPressLoginButton(_ sender: Any) {
         
-        let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
-        let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+        SVProgressHUD.show()
         
-        navigationController?.pushViewController(homeViewController, animated: true)
+        let params: [String: String] = [
+            
+//            TODO: Uncomment before commit
+
+            "email": getTextFielsValue(of: emailTextField) ?? "",
+            "password": getTextFielsValue(of: passwordTextField) ?? ""
+            
+//            "email": "fi.hercig@gmail.com",
+//            "password": "foobar"
+        ]
+        
+        AF
+            .request(
+                "https://tv-shows.infinum.academy/users/sign_in",
+                method: .post,
+                parameters: params,
+                encoder: JSONParameterEncoder.default
+            )
+            .validate()
+            .responseDecodable(of: UserResponse.self) { [weak self] response in
+                
+                switch response.result {
+                    case .success(_):
+                        SVProgressHUD.showSuccess(withStatus: "Success!")
+                        
+                        let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+                        let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+                        self?.navigationController?.pushViewController(homeViewController, animated: true)
+                        
+                    case .failure(let error):
+                        SVProgressHUD.showError(withStatus: "Error: \(error.errorDescription!)")
+                }
+            }
     }
     
     @IBAction private func didPressRegisterButton(_ sender: Any) {
-        didPressLoginButton(sender)
+        
+        SVProgressHUD.show()
+        
+        let params: [String: String] = [
+            "email": getTextFielsValue(of: emailTextField) ?? "",
+            "password": getTextFielsValue(of: passwordTextField) ?? "",
+            "password_confirmation": getTextFielsValue(of: passwordTextField) ?? ""
+        ]
+        
+        AF
+            .request(
+                "https://tv-shows.infinum.academy/users",
+                method: .post,
+                parameters: params,
+                encoder: JSONParameterEncoder.default
+            )
+            .validate()
+            .responseJSON(completionHandler: { [weak self] response in
+                
+                switch response.result {
+                case .success(_):
+                    
+                    SVProgressHUD.showSuccess(withStatus: "Success!")
+                    
+                    let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+                    let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+                    self?.navigationController?.pushViewController(homeViewController, animated: true)
+                    
+                case .failure(let error):
+                    SVProgressHUD.showError(withStatus: "Error: \(error.errorDescription!)")
+                }
+            })
     }
     
     
