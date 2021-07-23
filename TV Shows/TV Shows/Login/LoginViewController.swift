@@ -2,59 +2,82 @@
 //  LoginViewController.swift
 //  TV Shows
 //
-//  Created by Filip Hercig on 12.07.2021..
+//  Created by Filip Hercig on 17.07.2021..
 //
 
 import UIKit
-import SVProgressHUD
+
+
+final class CustomTextField: UITextField {
+
+    private let padding = UIEdgeInsets(top: 0, left: 16, bottom: 10, right: 16);
+
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+}
+
 
 final class LoginViewController: UIViewController {
     
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var incrementButton: UIButton!
-    @IBOutlet private weak var spinner: UIActivityIndicatorView!
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var rememberMeButton: UIButton!
+    @IBOutlet private weak var loginButton: UIButton!
     
-    private var numberOfTaps = 0
-    
-    
-    private func showSpinner(for delay: Int) {
-        
-        incrementButton.isEnabled = false
-        spinner.hidesWhenStopped = true
-        spinner.startAnimating()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) { [weak self] in
-            self?.spinner.stopAnimating()
-            self?.incrementButton.isEnabled = true
-        }
-
-    }
-
+    private var rememberMeIsActive = false
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        decorateButton()
-        showSpinner(for: 3)
+        editTextFieldStyle(of: emailTextField, placeholder: "Email")
+        editTextFieldStyle(of: passwordTextField, placeholder: "Password")
+        passwordTextField.isSecureTextEntry = true
         
+        roundButtonEdges(of: loginButton)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
+    
+    @IBAction private func rememberMeButtonTap(_ sender: Any) {
+        
+        if rememberMeIsActive {
+            rememberMeIsActive = !rememberMeIsActive
+            rememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
+        } else {
+            rememberMeIsActive = !rememberMeIsActive
+            rememberMeButton.setImage(UIImage(named: "ic-checkbox-selected"), for: .normal)
+        }
     }
     
     
-    private func decorateButton() {
+    private func editTextFieldStyle(of field: UITextField, placeholder: String = "") {
         
-        incrementButton.layer.cornerRadius = 10
-        incrementButton.clipsToBounds = true
+        // Changing placeholder style
+        let placeholderText = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
+        field.attributedPlaceholder = placeholderText
         
+        // Adding bottom border line
+        field.layer.shadowColor = UIColor.white.cgColor
+        field.layer.shadowOffset = CGSize(width: 0, height: 1)
+        field.layer.shadowOpacity = 1
+        field.layer.shadowRadius = 0
     }
     
-    
-    @IBAction func buttonTap() {
+    private func roundButtonEdges(of button: UIButton) {
         
-        showSpinner(for: 2)
-        
-        numberOfTaps += 1
-        titleLabel.text = "Number of taps: \(numberOfTaps)"
-      
+        button.layer.cornerRadius = 21.5
+        button.clipsToBounds = true
     }
-    
 }
