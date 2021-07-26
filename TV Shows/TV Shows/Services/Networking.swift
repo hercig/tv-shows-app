@@ -13,8 +13,7 @@ class Network {
     
     private let urlBase = "https://tv-shows.infinum.academy"
     
-    func sendRequest(on url: String, with params: [String: String], statusHandler: @escaping (Int) -> Void) {
-        
+    func sendRequest(on url: String, with params: [String: String], statusHandler: @escaping (Bool) -> Void) {
         AF
             .request(
                 urlBase + url,
@@ -28,11 +27,11 @@ class Network {
                 switch response.result {
                     case .success(_):
                         SVProgressHUD.showSuccess(withStatus: "Success!")
-                        statusHandler(1)
+                        statusHandler(true)
                         
                     case .failure(let error):
                         SVProgressHUD.showError(withStatus: "Error: \(error.errorDescription!)")
-                        statusHandler(0)
+                        statusHandler(false)
                 }
             }
     }

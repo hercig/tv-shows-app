@@ -13,9 +13,5 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        testLabel.text = "Hello \(userRespose.user.email)"
-        // Do any additional setup after loading the view.
     }
-
 }

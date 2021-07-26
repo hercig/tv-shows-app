@@ -59,24 +59,3 @@ struct AuthInfo: Codable {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

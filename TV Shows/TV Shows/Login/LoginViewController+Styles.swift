@@ -22,7 +22,6 @@ extension LoginViewController {
         field.layer.shadowRadius = 0
     }
     
-    
     func roundButtonEdges(of button: UIButton) {
         button.layer.cornerRadius = 21.5
         button.clipsToBounds = true
