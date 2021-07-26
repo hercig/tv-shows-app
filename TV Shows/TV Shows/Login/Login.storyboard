@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CLV-QK-w37">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -25,7 +25,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="lor-SX-osn">
                                 <rect key="frame" x="126" y="120" width="162" height="38"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="center" placeholderIntrinsicWidth="372" placeholderIntrinsicHeight="48" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RQF-XS-FbV" customClass="CustomTextField" customModule="TV_Shows" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="center" placeholderIntrinsicWidth="372" placeholderIntrinsicHeight="48" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RQF-XS-FbV" customClass="PaddedTextField" customModule="TV_Shows" customModuleProvider="target">
                                 <rect key="frame" x="21" y="316.5" width="372" height="48"/>
                                 <color key="backgroundColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -33,7 +33,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="center" placeholderIntrinsicWidth="372" placeholderIntrinsicHeight="48" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1e6-8z-qNB" customClass="CustomTextField" customModule="TV_Shows" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="center" placeholderIntrinsicWidth="372" placeholderIntrinsicHeight="48" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1e6-8z-qNB" customClass="PaddedTextField" customModule="TV_Shows" customModuleProvider="target">
                                 <rect key="frame" x="21" y="389.5" width="372" height="48"/>
                                 <color key="backgroundColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -85,13 +85,19 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="didPressLoginButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="FLj-Sq-9dr"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hz6-3e-1iS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEK-NK-lBo">
                                 <rect key="frame" x="173.5" y="576.5" width="67" height="33"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <state key="normal" title="Register">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="didPressRegisterButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="HKr-Oq-FKi"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -102,8 +108,7 @@
                             <constraint firstItem="RQF-XS-FbV" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="21" id="379-Bt-Msv"/>
                             <constraint firstItem="RQF-XS-FbV" firstAttribute="top" secondItem="Pas-D1-wvL" secondAttribute="bottom" constant="45" id="7gl-7a-Sn7"/>
                             <constraint firstItem="Pas-D1-wvL" firstAttribute="top" secondItem="lGj-3v-h6i" secondAttribute="bottom" constant="20" id="Exe-Vp-keH"/>
-                            <constraint firstItem="hz6-3e-1iS" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="MDg-3c-KKJ"/>
-                            <constraint firstItem="hz6-3e-1iS" firstAttribute="top" secondItem="4oS-Qg-WbI" secondAttribute="bottom" constant="20" id="QYx-HH-C2Z"/>
+                            <constraint firstItem="ZEK-NK-lBo" firstAttribute="top" secondItem="4oS-Qg-WbI" secondAttribute="bottom" constant="20" id="VfG-2t-1cW"/>
                             <constraint firstItem="Vq4-pl-qFV" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="Xgj-Wl-ksh"/>
                             <constraint firstItem="4oS-Qg-WbI" firstAttribute="top" secondItem="t1f-7D-RVC" secondAttribute="bottom" constant="30" id="ZEa-9v-H3x"/>
                             <constraint firstItem="qSn-8l-I8o" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" id="dKa-l7-sdH"/>
@@ -120,10 +125,12 @@
                             <constraint firstItem="1e6-8z-qNB" firstAttribute="top" secondItem="RQF-XS-FbV" secondAttribute="bottom" constant="25" id="nHb-lL-ssh"/>
                             <constraint firstItem="pTd-Fj-FTf" firstAttribute="leading" secondItem="t1f-7D-RVC" secondAttribute="trailing" constant="6.2000000000000002" id="oTf-gg-VKu"/>
                             <constraint firstItem="Vq4-pl-qFV" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="qmS-LI-TgH"/>
+                            <constraint firstItem="ZEK-NK-lBo" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="wWp-TH-3ta"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="RQF-XS-FbV" secondAttribute="trailing" constant="21" id="wlX-D7-dGB"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1e6-8z-qNB" secondAttribute="trailing" constant="21" id="zo8-JS-Zw7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="8gh-HZ-3k2"/>
                     <connections>
                         <outlet property="emailTextField" destination="RQF-XS-FbV" id="Prh-na-CeC"/>
                         <outlet property="loginButton" destination="4oS-Qg-WbI" id="Mfe-6u-XFo"/>
@@ -132,6 +139,24 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="123.88392857142857"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HAA-FN-xzN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CLV-QK-w37" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iX9-kO-rN9">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="exg-7K-qBR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ar4-S7-sdI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="123.88392857142857"/>
         </scene>

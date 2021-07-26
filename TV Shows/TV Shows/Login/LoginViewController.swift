@@ -6,25 +6,8 @@
 //
 
 import UIKit
-
-
-final class CustomTextField: UITextField {
-
-    private let padding = UIEdgeInsets(top: 0, left: 16, bottom: 10, right: 16);
-
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-
-    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-}
-
+import Alamofire
+import SVProgressHUD
 
 final class LoginViewController: UIViewController {
     
@@ -34,50 +17,84 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var loginButton: UIButton!
     
     private var rememberMeIsActive = false
+    var userResponse: UserResponse? = nil
+    let network = Network()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         editTextFieldStyle(of: emailTextField, placeholder: "Email")
         editTextFieldStyle(of: passwordTextField, placeholder: "Password")
         passwordTextField.isSecureTextEntry = true
-        
         roundButtonEdges(of: loginButton)
+        setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
     }
+}
+
+// MARK: - Style
+
+private extension LoginViewController {
     
-    @IBAction private func rememberMeButtonTap(_ sender: Any) {
-        
-        if rememberMeIsActive {
-            rememberMeIsActive = !rememberMeIsActive
-            rememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
-        } else {
-            rememberMeIsActive = !rememberMeIsActive
-            rememberMeButton.setImage(UIImage(named: "ic-checkbox-selected"), for: .normal)
-        }
+    func getTextFielsValue(of textField: UITextField) -> String? {
+        let value = textField.text
+        return value
     }
     
+    func setupUI() {
+        rememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
+        rememberMeButton.setImage(UIImage(named: "ic-checkbox-selected"), for: .selected)
+    }
+}
+
+// MARK: - IBActions
+
+private extension LoginViewController {
     
-    private func editTextFieldStyle(of field: UITextField, placeholder: String = "") {
-        
-        // Changing placeholder style
-        let placeholderText = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
-        field.attributedPlaceholder = placeholderText
-        
-        // Adding bottom border line
-        field.layer.shadowColor = UIColor.white.cgColor
-        field.layer.shadowOffset = CGSize(width: 0, height: 1)
-        field.layer.shadowOpacity = 1
-        field.layer.shadowRadius = 0
+    @IBAction func rememberMeButtonTap(_ sender: Any) {
+        rememberMeButton.isSelected.toggle()
     }
     
-    private func roundButtonEdges(of button: UIButton) {
+    @IBAction func didPressLoginButton(_ sender: Any) {
+        SVProgressHUD.show()
         
-        button.layer.cornerRadius = 21.5
-        button.clipsToBounds = true
+        let params: [String: String] = [
+            "email": getTextFielsValue(of: emailTextField) ?? "",
+            "password": getTextFielsValue(of: passwordTextField) ?? ""
+        ]
+        
+        network.sendRequest(on: "/users/sign_in", with: params, statusHandler: { [weak self] responseIsSuccessful in
+            if responseIsSuccessful {
+                let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+                self?.navigationController?.pushViewController(homeViewController, animated: true)
+            }
+        })
+    }
+    
+    @IBAction func didPressRegisterButton(_ sender: Any) {
+        SVProgressHUD.show()
+        
+        let params: [String: String] = [
+            "email": getTextFielsValue(of: emailTextField) ?? "",
+            "password": getTextFielsValue(of: passwordTextField) ?? "",
+            "password_confirmation": getTextFielsValue(of: passwordTextField) ?? ""
+        ]
+        
+        network.sendRequest(on: "/users", with: params, statusHandler: { [weak self] responseIsSuccessful in
+            if responseIsSuccessful {
+                let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+                self?.navigationController?.pushViewController(homeViewController, animated: true)
+            }
+        })
     }
 }
