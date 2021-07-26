@@ -59,7 +59,6 @@ final class LoginViewController: UIViewController {
     
     
     @IBAction private func rememberMeButtonTap(_ sender: Any) {
-        
         if rememberMeIsActive {
             rememberMeIsActive = !rememberMeIsActive
             rememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)

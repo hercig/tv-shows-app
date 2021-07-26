@@ -12,7 +12,7 @@ extension LoginViewController {
     func editTextFieldStyle(of field: UITextField, placeholder: String = "") {
         
         // Changing placeholder style
-        let placeholderText = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
+        let placeholderText = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
         field.attributedPlaceholder = placeholderText
         
         // Adding bottom border line
@@ -24,7 +24,6 @@ extension LoginViewController {
     
     
     func roundButtonEdges(of button: UIButton) {
-        
         button.layer.cornerRadius = 21.5
         button.clipsToBounds = true
     }
