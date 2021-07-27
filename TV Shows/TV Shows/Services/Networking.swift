@@ -13,7 +13,7 @@ class Network {
     
     private let urlBase = "https://tv-shows.infinum.academy"
     
-    func sendRequest(on url: String, with params: [String: String], statusHandler: @escaping (Bool) -> Void) {
+    func loginRegisterRequest(on url: String, with params: [String: String], statusHandler: @escaping (UserResponse?, AFError?, DataResponse<UserResponse, AFError>) -> Void) {
         AF
             .request(
                 urlBase + url,
@@ -23,16 +23,50 @@ class Network {
             )
             .validate()
             .responseDecodable(of: UserResponse.self) { response in
-                
                 switch response.result {
-                    case .success(_):
-                        SVProgressHUD.showSuccess(withStatus: "Success!")
-                        statusHandler(true)
-                        
+                    case .success(let userResponse):
+                        SVProgressHUD.dismiss()
+                        statusHandler(userResponse, nil, response)
                     case .failure(let error):
-                        SVProgressHUD.showError(withStatus: "Error: \(error.errorDescription!)")
-                        statusHandler(false)
+                        SVProgressHUD.dismiss()
+                        statusHandler(nil, error, response)
                 }
+            }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func call<Model: Decodable>(
+        of type: Model.Type,
+        url: String,
+        params: [String: String]?,
+        router: URLRequestConvertible,
+        responseHandler: ((DataResponse<Model, AFError>) -> Void)?
+    ) {
+        AF
+            .request(
+                urlBase + url,
+                method: .post,
+                parameters: params,
+                encoder: JSONParameterEncoder.default
+            )
+            .validate()
+            .responseDecodable(of: Model.self) { dataResponse in
+                responseHandler?(dataResponse)
             }
     }
 }
