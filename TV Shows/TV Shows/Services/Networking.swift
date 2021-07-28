@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import SVProgressHUD
 
+
 class Network {
     
     private let urlBase = "https://tv-shows.infinum.academy"
@@ -35,38 +36,17 @@ class Network {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    func call<Model: Decodable>(
-        of type: Model.Type,
-        url: String,
-        params: [String: String]?,
-        router: URLRequestConvertible,
-        responseHandler: ((DataResponse<Model, AFError>) -> Void)?
-    ) {
+    func getShow(with auth: AuthInfo, statusHandler: @escaping (DataResponse<ShowsResponse, AFError>) -> Void) {
         AF
             .request(
-                urlBase + url,
-                method: .post,
-                parameters: params,
-                encoder: JSONParameterEncoder.default
+                "https://tv-shows.infinum.academy/shows",
+                method: .get,
+                parameters: [:],
+                headers: HTTPHeaders(auth.headers)
             )
             .validate()
-            .responseDecodable(of: Model.self) { dataResponse in
-                responseHandler?(dataResponse)
+            .responseDecodable(of: ShowsResponse.self) { response in
+                statusHandler(response)
             }
     }
 }

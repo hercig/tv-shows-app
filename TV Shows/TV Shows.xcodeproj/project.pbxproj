@@ -17,6 +17,7 @@
 		4E91E4E626A6E84100A6C7FE /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E91E4E526A6E84100A6C7FE /* PaddedTextField.swift */; };
 		4E91E4E826A6E8DB00A6C7FE /* LoginViewController+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E91E4E726A6E8DB00A6C7FE /* LoginViewController+Styles.swift */; };
 		4E91E4EA26A7181200A6C7FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E91E4E926A7181200A6C7FE /* User.swift */; };
+		4EAA74E426B2145300135E85 /* ShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAA74E326B2145300135E85 /* ShowTableViewCell.swift */; };
 		4EAB10C726B023AB004A192B /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAB10C626B023AB004A192B /* Shows.swift */; };
 		4EB4847626A829C2008C4982 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB4847526A829C2008C4982 /* Networking.swift */; };
 		E011A81AFF60E51DBC98F7CA /* Pods_TV_Shows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217FA2252093F851D9237ECC /* Pods_TV_Shows.framework */; };
@@ -37,6 +38,7 @@
 		4E91E4E526A6E84100A6C7FE /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		4E91E4E726A6E8DB00A6C7FE /* LoginViewController+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Styles.swift"; sourceTree = "<group>"; };
 		4E91E4E926A7181200A6C7FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4EAA74E326B2145300135E85 /* ShowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTableViewCell.swift; sourceTree = "<group>"; };
 		4EAB10C626B023AB004A192B /* Shows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shows.swift; sourceTree = "<group>"; };
 		4EB4847526A829C2008C4982 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		62F6EF5B27709957104F8D0C /* Pods-TV Shows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TV Shows.release.xcconfig"; path = "Target Support Files/Pods-TV Shows/Pods-TV Shows.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				4E91E4E126A6C20C00A6C7FE /* HomeViewController.swift */,
 				4E91E4E326A6D6E600A6C7FE /* Home.storyboard */,
 				4EAB10C626B023AB004A192B /* Shows.swift */,
+				4EAA74E326B2145300135E85 /* ShowTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				4E91E4EA26A7181200A6C7FE /* User.swift in Sources */,
 				4EB4847626A829C2008C4982 /* Networking.swift in Sources */,
 				4E91E4E826A6E8DB00A6C7FE /* LoginViewController+Styles.swift in Sources */,
+				4EAA74E426B2145300135E85 /* ShowTableViewCell.swift in Sources */,
 				4E02610B26975F3C005FCF82 /* AppDelegate.swift in Sources */,
 				4E91E4E226A6C20C00A6C7FE /* HomeViewController.swift in Sources */,
 			);

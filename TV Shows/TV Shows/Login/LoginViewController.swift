@@ -66,8 +66,10 @@ private extension LoginViewController {
         SVProgressHUD.show()
         
         let params: [String: String] = [
-            "email": getTextFielsValue(of: emailTextField) ?? "",
-            "password": getTextFielsValue(of: passwordTextField) ?? ""
+            "email": "fi.hercig@gmail.com",
+            "password": "foobar"
+//            "email": getTextFielsValue(of: emailTextField) ?? "",
+//            "password": getTextFielsValue(of: passwordTextField) ?? ""
         ]
         
         network.loginRegisterRequest(on: "/users/sign_in", with: params, statusHandler: { [weak self] (usrResponse, error, response) in
@@ -78,7 +80,7 @@ private extension LoginViewController {
                 
                 homeViewController.userResponse = userResponse
                 homeViewController.authInfo = authInfo
-                self?.navigationController?.pushViewController(homeViewController, animated: true)
+                self?.navigationController?.setViewControllers([homeViewController], animated: true)
             } else {
                 let alertController = UIAlertController(title: "Error", message: error?.errorDescription, preferredStyle: .alert)
                 let OKAction = UIAlertAction(title: "OK", style: .default)
