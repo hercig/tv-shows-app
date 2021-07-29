@@ -39,13 +39,28 @@ class Network {
     func getShow(with auth: AuthInfo, statusHandler: @escaping (DataResponse<ShowsResponse, AFError>) -> Void) {
         AF
             .request(
-                "https://tv-shows.infinum.academy/shows",
+                urlBase + "/shows",
                 method: .get,
                 parameters: [:],
                 headers: HTTPHeaders(auth.headers)
             )
             .validate()
             .responseDecodable(of: ShowsResponse.self) { response in
+                statusHandler(response)
+            }
+    }
+    
+    func getReviews(for show: Show, with auth: AuthInfo, statusHandler: @escaping (DataResponse<ReviewResponse, AFError>) -> Void) {
+        AF
+            .request(
+                urlBase + "/shows/" + String(describing: show.id) + "/reviews",
+                method: .get,
+                parameters: [:],
+                headers: HTTPHeaders(auth.headers)
+            )
+            .validate()
+            .responseDecodable(of: ReviewResponse.self) { response in
+                print(show.id)
                 statusHandler(response)
             }
     }

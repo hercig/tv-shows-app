@@ -11,6 +11,10 @@ class ShowReviewsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+    }
+    
+    func configure(with show: Show) {
+//        print("LL")
     }
 }

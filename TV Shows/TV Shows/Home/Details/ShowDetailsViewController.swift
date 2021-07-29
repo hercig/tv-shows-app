@@ -13,6 +13,7 @@ class ShowDetailsViewController: UIViewController, UITableViewDataSource {
     
     var show: Show?
     var authInfo: AuthInfo?
+    let network = Network()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,18 +27,38 @@ class ShowDetailsViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        network.getReviews(for: show!, with: authInfo!, statusHandler: { r in
+            switch r.result {
+            case .success(let result):
+                print("Jej")
+            case .failure(let error):
+                print("______________________________")
+                print(r)
+                print(error.errorDescription)
+                print(error.responseCode)
+                print("______________________________")
+            }
+        })
     }
 }
 
 extension ShowDetailsViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        guard let noOfReviews = show?.noOfReviews else { return 0 }
+        return noOfReviews + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellName = String(describing: ShowInfoTableViewCell.self)
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! ShowInfoTableViewCell
-        cell.configure(with: show!)
-        return cell
+        if indexPath.row == 0 {
+            let cellName = String(describing: ShowInfoTableViewCell.self)
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! ShowInfoTableViewCell
+            cell.configure(with: show!)
+            return cell
+        } else {
+            let cellName = String(describing: ShowReviewsTableViewCell.self)
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! ShowReviewsTableViewCell
+            cell.configure(with: show!)
+            return cell
+        }
     }
 }

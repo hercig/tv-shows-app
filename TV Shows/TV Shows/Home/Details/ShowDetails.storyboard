@@ -82,11 +82,11 @@
                                             <outlet property="showDescription" destination="eae-fk-VxZ" id="WFM-jd-bwV"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="318" id="7mt-oA-tr1">
-                                        <rect key="frame" x="0.0" y="539.5" width="414" height="318"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowReviewsTableViewCell" rowHeight="161" id="7mt-oA-tr1" customClass="ShowReviewsTableViewCell" customModule="TV_Shows" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="539.5" width="414" height="161"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7mt-oA-tr1" id="EH8-Hs-kwR">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="318"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

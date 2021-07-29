@@ -57,6 +57,7 @@ private extension HomeViewController {
             withIdentifier: String(describing: ShowDetailsViewController.self)
         ) as! ShowDetailsViewController
         showDetailsViewController.show = show
+        showDetailsViewController.authInfo = authInfo
         navigationController?.pushViewController(showDetailsViewController, animated: true)
     }
 }
