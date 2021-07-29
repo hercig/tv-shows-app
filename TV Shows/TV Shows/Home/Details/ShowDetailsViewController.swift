@@ -13,7 +13,8 @@ class ShowDetailsViewController: UIViewController, UITableViewDataSource {
     
     var show: Show?
     var authInfo: AuthInfo?
-    let network = Network()
+    private var reviews: [Review] = []
+    private let network = Network()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -21,22 +22,18 @@ class ShowDetailsViewController: UIViewController, UITableViewDataSource {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.title = show?.title
-        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        network.getReviews(for: show!, with: authInfo!, statusHandler: { r in
+        network.getReviews(for: show!, with: authInfo!, statusHandler: { [weak self] r in
+            guard let self = self else { return }
             switch r.result {
-            case .success(let result):
-                print("Jej")
-            case .failure(let error):
-                print("______________________________")
-                print(r)
-                print(error.errorDescription)
-                print(error.responseCode)
-                print("______________________________")
+                case .success(let result):
+                    self.reviews = result.reviews
+                case .failure(let error):
+                    print(error.errorDescription ?? "")
             }
         })
     }
@@ -57,7 +54,6 @@ extension ShowDetailsViewController {
         } else {
             let cellName = String(describing: ShowReviewsTableViewCell.self)
             let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! ShowReviewsTableViewCell
-            cell.configure(with: show!)
             return cell
         }
     }

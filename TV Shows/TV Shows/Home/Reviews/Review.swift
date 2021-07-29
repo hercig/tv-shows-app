@@ -24,5 +24,5 @@ struct Review: Decodable {
 }
 
 struct ReviewResponse: Decodable {
-    let review: [Review]
+    let reviews: [Review]
 }

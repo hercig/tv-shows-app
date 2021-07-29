@@ -60,7 +60,6 @@ class Network {
             )
             .validate()
             .responseDecodable(of: ReviewResponse.self) { response in
-                print(show.id)
                 statusHandler(response)
             }
     }
