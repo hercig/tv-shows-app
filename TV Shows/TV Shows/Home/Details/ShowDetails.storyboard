@@ -21,11 +21,11 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowInfoTableViewCell" id="vLg-j6-G94" customClass="ShowInfoTableViewCell" customModule="TV_Shows" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="417.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowInfoTableViewCell" rowHeight="515" id="vLg-j6-G94" customClass="ShowInfoTableViewCell" customModule="TV_Shows" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="515"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vLg-j6-G94" id="3im-Jg-FBi">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="417.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="515"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eae-fk-VxZ">
@@ -47,21 +47,28 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="No reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4N4-75-uJ4">
-                                                    <rect key="frame" x="20" y="369.5" width="374" height="17"/>
+                                                    <rect key="frame" x="20" y="369" width="374" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tB4-xp-Omw" customClass="RatingView" customModule="TV_Shows" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="396" width="374" height="88"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Fqc-XK-8OT" firstAttribute="leading" secondItem="3im-Jg-FBi" secondAttribute="leadingMargin" id="5al-zp-5ZH"/>
                                                 <constraint firstItem="eae-fk-VxZ" firstAttribute="leading" secondItem="3im-Jg-FBi" secondAttribute="leadingMargin" id="Bxl-xv-sA7"/>
-                                                <constraint firstItem="4N4-75-uJ4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="MYf-ae-icl" secondAttribute="bottom" constant="20" id="DWU-Ym-fEw"/>
+                                                <constraint firstItem="4N4-75-uJ4" firstAttribute="top" secondItem="MYf-ae-icl" secondAttribute="bottom" constant="20" id="DWU-Ym-fEw"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="tB4-xp-Omw" secondAttribute="bottom" constant="20" id="E0x-9M-80X"/>
                                                 <constraint firstItem="4N4-75-uJ4" firstAttribute="leading" secondItem="3im-Jg-FBi" secondAttribute="leadingMargin" id="ElV-cN-bqD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="tB4-xp-Omw" secondAttribute="trailing" id="KlG-Zh-vuQ"/>
+                                                <constraint firstItem="tB4-xp-Omw" firstAttribute="leading" secondItem="3im-Jg-FBi" secondAttribute="leadingMargin" id="ONg-YH-EJe"/>
                                                 <constraint firstItem="Fqc-XK-8OT" firstAttribute="top" secondItem="3im-Jg-FBi" secondAttribute="topMargin" id="QIa-ar-DOg"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="4N4-75-uJ4" secondAttribute="bottom" constant="20" id="Y8E-WK-tjY"/>
                                                 <constraint firstItem="Fqc-XK-8OT" firstAttribute="trailing" secondItem="3im-Jg-FBi" secondAttribute="trailingMargin" id="Z6f-CC-QVe"/>
                                                 <constraint firstItem="4N4-75-uJ4" firstAttribute="trailing" secondItem="3im-Jg-FBi" secondAttribute="trailingMargin" id="cz6-F2-Z6w"/>
+                                                <constraint firstItem="tB4-xp-Omw" firstAttribute="top" secondItem="4N4-75-uJ4" secondAttribute="bottom" constant="10" id="czW-dB-RQ6"/>
                                                 <constraint firstItem="eae-fk-VxZ" firstAttribute="top" secondItem="Fqc-XK-8OT" secondAttribute="bottom" constant="20" id="gdf-VO-2eG"/>
                                                 <constraint firstItem="eae-fk-VxZ" firstAttribute="trailing" secondItem="3im-Jg-FBi" secondAttribute="trailingMargin" id="qFj-gA-OxW"/>
                                                 <constraint firstItem="MYf-ae-icl" firstAttribute="top" secondItem="eae-fk-VxZ" secondAttribute="bottom" constant="20" id="tIt-M3-f0D"/>
@@ -70,11 +77,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="averageRating" destination="4N4-75-uJ4" id="Suv-Qp-wQg"/>
+                                            <outlet property="ratingView" destination="tB4-xp-Omw" id="gan-iP-5UA"/>
                                             <outlet property="showDescription" destination="eae-fk-VxZ" id="WFM-jd-bwV"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="318" id="7mt-oA-tr1">
-                                        <rect key="frame" x="0.0" y="442" width="414" height="318"/>
+                                        <rect key="frame" x="0.0" y="539.5" width="414" height="318"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7mt-oA-tr1" id="EH8-Hs-kwR">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="318"/>

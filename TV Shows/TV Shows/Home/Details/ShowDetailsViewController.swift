@@ -19,6 +19,7 @@ class ShowDetailsViewController: UIViewController, UITableViewDataSource {
         navigationController?.view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.title = show?.title
         
     }
 
