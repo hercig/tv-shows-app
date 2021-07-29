@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
         tableView.dataSource = self
         getShowsList()
     }
@@ -49,6 +50,14 @@ private extension HomeViewController {
                 }
         })
     }
+    
+    func navigateToShowDetails(for show: Show) {
+        let storyboard = UIStoryboard(name: "ShowDetails", bundle: .main)
+        let showDetailsViewController = storyboard.instantiateViewController(
+            withIdentifier: String(describing: ShowDetailsViewController.self)
+        ) as! ShowDetailsViewController
+        navigationController?.pushViewController(showDetailsViewController, animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -65,5 +74,15 @@ extension HomeViewController: UITableViewDataSource {
         let show = shows[indexPath.row]
         cell.configure(with: show)
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension HomeViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let show = shows[indexPath.row]
+        navigateToShowDetails(for: show)
     }
 }
