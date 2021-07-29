@@ -8,9 +8,15 @@
 import UIKit
 
 class ShowInfoTableViewCell: UITableViewCell {
+    
+    @IBOutlet private weak var showDescription: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func configure(with show: Show) {
+        showDescription.text = show.description
     }
 }

@@ -123,8 +123,8 @@
 		4EAA74E526B2979800135E85 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				4EAA74E626B297B600135E85 /* ShowDetailsViewController.swift */,
 				4EAA74E826B298DB00135E85 /* ShowDetails.storyboard */,
+				4EAA74E626B297B600135E85 /* ShowDetailsViewController.swift */,
 				4EE1C74926B2A24F0067869A /* ShowInfoTableViewCell.swift */,
 				4EE1C74B26B2A2630067869A /* ShowReviewsTableViewCell.swift */,
 			);

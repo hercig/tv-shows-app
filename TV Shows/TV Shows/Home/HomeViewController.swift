@@ -56,6 +56,7 @@ private extension HomeViewController {
         let showDetailsViewController = storyboard.instantiateViewController(
             withIdentifier: String(describing: ShowDetailsViewController.self)
         ) as! ShowDetailsViewController
+        showDetailsViewController.show = show
         navigationController?.pushViewController(showDetailsViewController, animated: true)
     }
 }
