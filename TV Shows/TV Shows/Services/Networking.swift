@@ -51,6 +51,7 @@ class Network {
     }
     
     func getReviews(for show: Show, with auth: AuthInfo, statusHandler: @escaping (DataResponse<ReviewResponse, AFError>) -> Void) {
+        SVProgressHUD.show()
         AF
             .request(
                 urlBase + "/shows/" + String(describing: show.id) + "/reviews",

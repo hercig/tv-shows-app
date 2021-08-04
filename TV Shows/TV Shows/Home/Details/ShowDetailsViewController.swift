@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class ShowDetailsViewController: UIViewController, UITableViewDataSource {
     
@@ -32,7 +33,10 @@ class ShowDetailsViewController: UIViewController, UITableViewDataSource {
             switch r.result {
                 case .success(let result):
                     self.reviews = result.reviews
+                    SVProgressHUD.dismiss()
+                    self.tableView.reloadData()
                 case .failure(let error):
+                    SVProgressHUD.dismiss()
                     print(error.errorDescription ?? "")
             }
         })
@@ -41,8 +45,8 @@ class ShowDetailsViewController: UIViewController, UITableViewDataSource {
 
 extension ShowDetailsViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let noOfReviews = show?.noOfReviews else { return 0 }
-        return noOfReviews + 1
+        let noOfReviews = reviews.count
+        return noOfReviews
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,6 +58,7 @@ extension ShowDetailsViewController {
         } else {
             let cellName = String(describing: ShowReviewsTableViewCell.self)
             let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! ShowReviewsTableViewCell
+            cell.configure(with: reviews[indexPath.row])
             return cell
         }
     }

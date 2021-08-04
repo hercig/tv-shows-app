@@ -16,7 +16,7 @@ class ShowInfoTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        ratingView.configure(withStyle: .small)
+        ratingView.configure(withStyle: .large)
         ratingView.isEnabled = false
     }
     
