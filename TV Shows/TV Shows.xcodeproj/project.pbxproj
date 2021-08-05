@@ -22,6 +22,7 @@
 		4EAA74E926B298DB00135E85 /* ShowDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EAA74E826B298DB00135E85 /* ShowDetails.storyboard */; };
 		4EAB10C726B023AB004A192B /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAB10C626B023AB004A192B /* Shows.swift */; };
 		4EB4847626A829C2008C4982 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB4847526A829C2008C4982 /* Networking.swift */; };
+		4ED4132226BBDA4500A03BF0 /* WriteReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4132126BBDA4500A03BF0 /* WriteReviewTableViewCell.swift */; };
 		4EE1C74A26B2A24F0067869A /* ShowInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE1C74926B2A24F0067869A /* ShowInfoTableViewCell.swift */; };
 		4EE1C74C26B2A2630067869A /* ShowReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE1C74B26B2A2630067869A /* ShowReviewsTableViewCell.swift */; };
 		4EE1C74E26B2C05A0067869A /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE1C74D26B2C05A0067869A /* RatingView.swift */; };
@@ -49,6 +50,7 @@
 		4EAA74E826B298DB00135E85 /* ShowDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowDetails.storyboard; sourceTree = "<group>"; };
 		4EAB10C626B023AB004A192B /* Shows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shows.swift; sourceTree = "<group>"; };
 		4EB4847526A829C2008C4982 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		4ED4132126BBDA4500A03BF0 /* WriteReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewTableViewCell.swift; sourceTree = "<group>"; };
 		4EE1C74926B2A24F0067869A /* ShowInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInfoTableViewCell.swift; sourceTree = "<group>"; };
 		4EE1C74B26B2A2630067869A /* ShowReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		4EE1C74D26B2C05A0067869A /* RatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				4EE1C74B26B2A2630067869A /* ShowReviewsTableViewCell.swift */,
 				4EE1C74D26B2C05A0067869A /* RatingView.swift */,
 				4EE1C75026B2C9E20067869A /* Review.swift */,
+				4ED4132126BBDA4500A03BF0 /* WriteReviewTableViewCell.swift */,
 			);
 			path = Reviews;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				4E2949BC26A34CC100982A44 /* LoginViewController.swift in Sources */,
 				4EAB10C726B023AB004A192B /* Shows.swift in Sources */,
 				4E91E4EA26A7181200A6C7FE /* User.swift in Sources */,
+				4ED4132226BBDA4500A03BF0 /* WriteReviewTableViewCell.swift in Sources */,
 				4EB4847626A829C2008C4982 /* Networking.swift in Sources */,
 				4E91E4E826A6E8DB00A6C7FE /* LoginViewController+Styles.swift in Sources */,
 				4EAA74E726B297B600135E85 /* ShowDetailsViewController.swift in Sources */,

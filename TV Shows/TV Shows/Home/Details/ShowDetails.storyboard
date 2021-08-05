@@ -137,6 +137,36 @@
                                             <outlet property="ratingView" destination="wpj-Hg-VAN" id="CBr-Bo-k3v"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WriteReviewTableViewCell" id="BOT-rL-VP5" customClass="WriteReviewTableViewCell" customModule="TV_Shows" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="658.5" width="414" height="111"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BOT-rL-VP5" id="lIV-8V-R4A">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="111"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhO-mE-heV">
+                                                    <rect key="frame" x="27" y="38.5" width="360" height="48.5"/>
+                                                    <color key="backgroundColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="vxN-iA-U0h"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <state key="normal" title="Write a Review">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uhO-mE-heV" firstAttribute="top" secondItem="lIV-8V-R4A" secondAttribute="top" constant="38.5" id="0eo-cP-dP8"/>
+                                                <constraint firstAttribute="trailing" secondItem="uhO-mE-heV" secondAttribute="trailing" constant="27" id="5aF-Op-OUM"/>
+                                                <constraint firstItem="uhO-mE-heV" firstAttribute="leading" secondItem="lIV-8V-R4A" secondAttribute="leading" constant="27" id="Eoh-Pl-kvb"/>
+                                                <constraint firstAttribute="bottom" secondItem="uhO-mE-heV" secondAttribute="bottom" constant="24" id="cRU-WO-pw0"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="writeReviewButton" destination="uhO-mE-heV" id="tfx-FU-Gdu"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>

@@ -45,7 +45,8 @@ class ShowDetailsViewController: UIViewController, UITableViewDataSource {
 
 extension ShowDetailsViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let noOfReviews = reviews.count
+        let noOfReviews = reviews.count + 2
+        print("NOOFREVIEWS: \(noOfReviews) ______________")
         return noOfReviews
     }
     
@@ -55,10 +56,14 @@ extension ShowDetailsViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! ShowInfoTableViewCell
             cell.configure(with: show!)
             return cell
-        } else {
+        } else if indexPath.row < reviews.count + 1 {
             let cellName = String(describing: ShowReviewsTableViewCell.self)
             let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! ShowReviewsTableViewCell
-            cell.configure(with: reviews[indexPath.row])
+            cell.configure(with: reviews[indexPath.row - 1])
+            return cell
+        } else {
+            let cellName = String(describing: WriteReviewTableViewCell.self)
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! WriteReviewTableViewCell
             return cell
         }
     }
