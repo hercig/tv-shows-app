@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class WriteReviewViewController: UIViewController {
     
     @IBOutlet private weak var ratingView: RatingView!
     @IBOutlet private weak var submitButton: UIButton!
     @IBOutlet private weak var commentField: UITextView!
+    
+    private let network = Network()
+    var show: Show?
+    var authInfo: AuthInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +32,8 @@ class WriteReviewViewController: UIViewController {
         super.touchesBegan(touches, with: event)
     }
 }
+
+// MARK: - setting up UI
 
 private extension WriteReviewViewController {
 
@@ -53,5 +60,27 @@ private extension WriteReviewViewController {
             right: 15
         )
         
+    }
+}
+
+// MARK: - @IBActions
+
+private extension WriteReviewViewController {
+    
+    @IBAction func didTapSubmitButton() {
+        
+        let params = ReviewParameters(
+            rating: ratingView.rating,
+            comment: commentField.text,
+            show_id: Int(show!.id)!
+        )
+        
+        network.submitShowReview(with: params, auth: authInfo!, statusHandler: { [weak self] isSuccesful in
+            SVProgressHUD.dismiss()
+            guard let self = self else { return }
+            if isSuccesful {
+                self.didSelectClose()
+            }
+        })
     }
 }

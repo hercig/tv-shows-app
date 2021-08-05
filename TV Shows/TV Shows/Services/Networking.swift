@@ -9,6 +9,11 @@ import Foundation
 import Alamofire
 import SVProgressHUD
 
+struct ReviewParameters: Codable {
+    let rating: Int
+    let comment: String
+    let show_id: Int
+}
 
 class Network {
     
@@ -63,5 +68,33 @@ class Network {
             .responseDecodable(of: ReviewResponse.self) { response in
                 statusHandler(response)
             }
+    }
+    
+    func submitShowReview(with params: ReviewParameters, auth: AuthInfo, statusHandler: @escaping (Bool) -> Void) {
+        SVProgressHUD.show()
+        let requestParameters = params
+        let encoder = JSONEncoder()
+        guard let data = try? encoder.encode(requestParameters) else {
+            return
+        }
+        let url = URL(string: urlBase + "/reviews")!
+        var urlRequest = URLRequest(url: url)
+
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = data
+        urlRequest.allHTTPHeaderFields = auth.headers
+        urlRequest.httpMethod = "POST"
+        
+        AF
+            .request(urlRequest)
+            .responseString { response in
+                switch response.result {
+                    case .success(_):
+                        statusHandler(true)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        statusHandler(false)
+                }
+        }
     }
 }

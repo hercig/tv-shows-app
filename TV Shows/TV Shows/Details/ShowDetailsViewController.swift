@@ -73,8 +73,12 @@ extension ShowDetailsViewController {
     @IBAction func didTapWriteReviewButton (_ sender: Any) {
         
         let reviewStoryboard = UIStoryboard(name: "WriteReview", bundle: nil)
-        let VC1 = reviewStoryboard.instantiateViewController(withIdentifier: "WriteReviewViewController")
-        let navController = UINavigationController(rootViewController: VC1)
+        let writeReviewVC = reviewStoryboard.instantiateViewController(withIdentifier: "WriteReviewViewController") as! WriteReviewViewController
+        let navController = UINavigationController(rootViewController: writeReviewVC)
+        
+        writeReviewVC.authInfo = authInfo
+        writeReviewVC.show = show
+        
         self.present(navController, animated:true)
     }
 }

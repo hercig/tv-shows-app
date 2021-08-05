@@ -95,6 +95,7 @@
 		4E02610926975F3C005FCF82 /* TV Shows */ = {
 			isa = PBXGroup;
 			children = (
+				4EAA74E526B2979800135E85 /* Details */,
 				4EB4847426A8297D008C4982 /* Services */,
 				4E91E4DE26A6C1DF00A6C7FE /* Home */,
 				4E2949B826A34C8D00982A44 /* Login */,
@@ -121,7 +122,6 @@
 		4E91E4DE26A6C1DF00A6C7FE /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				4EAA74E526B2979800135E85 /* Details */,
 				4E91E4E126A6C20C00A6C7FE /* HomeViewController.swift */,
 				4E91E4E326A6D6E600A6C7FE /* Home.storyboard */,
 				4EAB10C626B023AB004A192B /* Shows.swift */,
