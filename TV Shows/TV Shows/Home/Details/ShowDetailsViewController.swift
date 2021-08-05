@@ -46,7 +46,6 @@ class ShowDetailsViewController: UIViewController, UITableViewDataSource {
 extension ShowDetailsViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let noOfReviews = reviews.count + 2
-        print("NOOFREVIEWS: \(noOfReviews) ______________")
         return noOfReviews
     }
     
@@ -66,5 +65,16 @@ extension ShowDetailsViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! WriteReviewTableViewCell
             return cell
         }
+    }
+}
+
+extension ShowDetailsViewController {
+    
+    @IBAction func didTapWriteReviewButton (_ sender: Any) {
+        
+        let reviewStoryboard = UIStoryboard(name: "WriteReview", bundle: nil)
+        let VC1 = reviewStoryboard.instantiateViewController(withIdentifier: "WriteReviewViewController")
+        let navController = UINavigationController(rootViewController: VC1)
+        self.present(navController, animated:true)
     }
 }

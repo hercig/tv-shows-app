@@ -154,6 +154,9 @@
                                                     <state key="normal" title="Write a Review">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="didTapWriteReviewButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Zx7-xg-y1O"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

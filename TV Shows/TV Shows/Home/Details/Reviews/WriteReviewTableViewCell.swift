@@ -20,5 +20,4 @@ class WriteReviewTableViewCell: UITableViewCell {
         writeReviewButton.layer.cornerRadius = 21.5
         writeReviewButton.clipsToBounds = true
     }
-
 }
