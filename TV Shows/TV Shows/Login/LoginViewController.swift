@@ -72,22 +72,28 @@ private extension LoginViewController {
 //            "password": getTextFielsValue(of: passwordTextField) ?? ""
         ]
         
-        network.loginRegisterRequest(on: "/users/sign_in", with: params, statusHandler: { [weak self] (usrResponse, error, response) in
-            if let userResponse = usrResponse {
-                let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
-                let authInfo = try? AuthInfo(headers: response.response?.headers.dictionary ?? [:])
-                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+        network.loginRegisterRequest(
+            on: "/users/sign_in",
+            with: params,
+            statusHandler: { [weak self] (usrResponse, error, response) in
+                guard let self = self else { return }
                 
-                homeViewController.userResponse = userResponse
-                homeViewController.authInfo = authInfo
-                self?.navigationController?.setViewControllers([homeViewController], animated: true)
-            } else {
-                let alertController = UIAlertController(title: "Error", message: error?.errorDescription, preferredStyle: .alert)
-                let OKAction = UIAlertAction(title: "OK", style: .default)
-                alertController.addAction(OKAction)
-                self?.present(alertController, animated: true)
+                if let userResponse = usrResponse {
+                    let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+                    let authInfo = try? AuthInfo(headers: response.response?.headers.dictionary ?? [:])
+                    let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+                    
+                    homeViewController.userResponse = userResponse
+                    homeViewController.authInfo = authInfo
+                    self.navigationController?.setViewControllers([homeViewController], animated: true)
+                } else {
+                    let alertController = UIAlertController(title: "Error", message: error?.errorDescription, preferredStyle: .alert)
+                    let OKAction = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(OKAction)
+                    self.present(alertController, animated: true)
+                }
             }
-        })
+        )
     }
     
     @IBAction func didPressRegisterButton(_ sender: Any) {
