@@ -52,6 +52,17 @@ private extension LoginViewController {
         rememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
         rememberMeButton.setImage(UIImage(named: "ic-checkbox-selected"), for: .selected)
     }
+    
+    func animateTextField(_ field: UITextField) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 3
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: field.center.x - 10, y: field.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: field.center.x + 10, y: field.center.y))
+
+        field.layer.add(animation, forKey: "position")
+    }
 }
 
 // MARK: - IBActions
@@ -72,22 +83,26 @@ private extension LoginViewController {
 //            "password": getTextFielsValue(of: passwordTextField) ?? ""
         ]
         
-        network.loginRegisterRequest(on: "/users/sign_in", with: params, statusHandler: { [weak self] (usrResponse, error, response) in
-            if let userResponse = usrResponse {
-                let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
-                let authInfo = try? AuthInfo(headers: response.response?.headers.dictionary ?? [:])
-                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+        network.loginRegisterRequest(
+            on: "/users/sign_in",
+            with: params,
+            statusHandler: { [weak self] (usrResponse, error, response) in
+                guard let self = self else { return }
                 
-                homeViewController.userResponse = userResponse
-                homeViewController.authInfo = authInfo
-                self?.navigationController?.setViewControllers([homeViewController], animated: true)
-            } else {
-                let alertController = UIAlertController(title: "Error", message: error?.errorDescription, preferredStyle: .alert)
-                let OKAction = UIAlertAction(title: "OK", style: .default)
-                alertController.addAction(OKAction)
-                self?.present(alertController, animated: true)
+                if let userResponse = usrResponse {
+                    let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+                    let authInfo = try? AuthInfo(headers: response.response?.headers.dictionary ?? [:])
+                    let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+                    
+                    homeViewController.userResponse = userResponse
+                    homeViewController.authInfo = authInfo
+                    self.navigationController?.setViewControllers([homeViewController], animated: true)
+                } else {
+                    self.animateTextField((self.passwordTextField)!)
+                    self.animateTextField((self.emailTextField)!)
+                }
             }
-        })
+        )
     }
     
     @IBAction func didPressRegisterButton(_ sender: Any) {

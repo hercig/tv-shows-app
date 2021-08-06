@@ -6,18 +6,28 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ShowTableViewCell: UITableViewCell {
     
-    @IBOutlet private weak var titleLabel: UILabel!
+    var show: Show!
+    
+    @IBOutlet private weak var showTitle: UILabel!
+    @IBOutlet private weak var showImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func configure(with show: Show) {
-        titleLabel.text = show.title
+        self.show = show
+        showTitle.text = show.title
+        let imageUrl = URL(string: show.imageUrl)
+        showImage.kf.setImage(
+            with: imageUrl,
+            placeholder: UIImage(named: "ic-show-placeholder-vertical")
+        )
+
     }
 
 }

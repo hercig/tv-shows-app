@@ -74,6 +74,7 @@ extension HomeViewController: UITableViewDataSource {
         let cellName = String(describing: ShowTableViewCell.self)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! ShowTableViewCell
         let show = shows[indexPath.row]
+        cell.show = show
         cell.configure(with: show)
         return cell
     }
