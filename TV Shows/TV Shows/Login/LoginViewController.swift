@@ -17,7 +17,6 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var loginButton: UIButton!
     
     private var rememberMeIsActive = false
-    var userResponse: UserResponse? = nil
     let network = Network()
     
     override func viewDidLoad() {
@@ -67,17 +66,34 @@ private extension LoginViewController {
         SVProgressHUD.show()
         
         let params: [String: String] = [
-            "email": getTextFielsValue(of: emailTextField) ?? "",
-            "password": getTextFielsValue(of: passwordTextField) ?? ""
+            "email": "fi.hercig@gmail.com",
+            "password": "foobar"
+//            "email": getTextFielsValue(of: emailTextField) ?? "",
+//            "password": getTextFielsValue(of: passwordTextField) ?? ""
         ]
         
-        network.sendRequest(on: "/users/sign_in", with: params, statusHandler: { [weak self] responseIsSuccessful in
-            if responseIsSuccessful {
-                let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
-                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-                self?.navigationController?.pushViewController(homeViewController, animated: true)
+        network.loginRegisterRequest(
+            on: "/users/sign_in",
+            with: params,
+            statusHandler: { [weak self] (usrResponse, error, response) in
+                guard let self = self else { return }
+                
+                if let userResponse = usrResponse {
+                    let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+                    let authInfo = try? AuthInfo(headers: response.response?.headers.dictionary ?? [:])
+                    let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+                    
+                    homeViewController.userResponse = userResponse
+                    homeViewController.authInfo = authInfo
+                    self.navigationController?.setViewControllers([homeViewController], animated: true)
+                } else {
+                    let alertController = UIAlertController(title: "Error", message: error?.errorDescription, preferredStyle: .alert)
+                    let OKAction = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(OKAction)
+                    self.present(alertController, animated: true)
+                }
             }
-        })
+        )
     }
     
     @IBAction func didPressRegisterButton(_ sender: Any) {
@@ -88,12 +104,22 @@ private extension LoginViewController {
             "password": getTextFielsValue(of: passwordTextField) ?? "",
             "password_confirmation": getTextFielsValue(of: passwordTextField) ?? ""
         ]
-        
-        network.sendRequest(on: "/users", with: params, statusHandler: { [weak self] responseIsSuccessful in
-            if responseIsSuccessful {
-                let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
-                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-                self?.navigationController?.pushViewController(homeViewController, animated: true)
+
+        network.loginRegisterRequest(on: "/users", with: params, statusHandler: { [weak self] (usrResponse, error, response) in
+            if usrResponse != nil {
+                let alertController = UIAlertController(
+                    title: "Success",
+                    message: "Please, login with your credentials.",
+                    preferredStyle: .alert
+                )
+                let OKAction = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(OKAction)
+                self?.present(alertController, animated: true)
+            } else {
+                let alertController = UIAlertController(title: "Error", message: error?.errorDescription, preferredStyle: .alert)
+                let OKAction = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(OKAction)
+                self?.present(alertController, animated: true)
             }
         })
     }

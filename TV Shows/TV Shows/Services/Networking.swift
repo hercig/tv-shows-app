@@ -9,11 +9,12 @@ import Foundation
 import Alamofire
 import SVProgressHUD
 
+
 class Network {
     
     private let urlBase = "https://tv-shows.infinum.academy"
     
-    func sendRequest(on url: String, with params: [String: String], statusHandler: @escaping (Bool) -> Void) {
+    func loginRegisterRequest(on url: String, with params: [String: String], statusHandler: @escaping (UserResponse?, AFError?, DataResponse<UserResponse, AFError>) -> Void) {
         AF
             .request(
                 urlBase + url,
@@ -23,16 +24,29 @@ class Network {
             )
             .validate()
             .responseDecodable(of: UserResponse.self) { response in
-                
                 switch response.result {
-                    case .success(_):
-                        SVProgressHUD.showSuccess(withStatus: "Success!")
-                        statusHandler(true)
-                        
+                    case .success(let userResponse):
+                        SVProgressHUD.dismiss()
+                        statusHandler(userResponse, nil, response)
                     case .failure(let error):
-                        SVProgressHUD.showError(withStatus: "Error: \(error.errorDescription!)")
-                        statusHandler(false)
+                        SVProgressHUD.dismiss()
+                        statusHandler(nil, error, response)
                 }
+            }
+    }
+    
+    
+    func getShow(with auth: AuthInfo, statusHandler: @escaping (DataResponse<ShowsResponse, AFError>) -> Void) {
+        AF
+            .request(
+                "https://tv-shows.infinum.academy/shows",
+                method: .get,
+                parameters: [:],
+                headers: HTTPHeaders(auth.headers)
+            )
+            .validate()
+            .responseDecodable(of: ShowsResponse.self) { response in
+                statusHandler(response)
             }
     }
 }
