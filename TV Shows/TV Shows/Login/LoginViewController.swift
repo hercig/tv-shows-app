@@ -15,9 +15,12 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var rememberMeButton: UIButton!
     @IBOutlet private weak var loginButton: UIButton!
-    
+
+    private let encoder = PropertyListEncoder()
+    private let decoder = PropertyListDecoder()
     private var rememberMeIsActive = false
     let network = Network()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,20 @@ final class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        if
+            let authInfo = loadAuthData(),
+            let userRespose = loadUserData()
+        {
+            let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+            let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+            homeViewController.authInfo = authInfo
+            homeViewController.userResponse = userRespose
+            
+            navigationController?.setViewControllers([homeViewController], animated: true)
+        } else {
+            print("Nema DATEEEEE")
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -65,6 +82,54 @@ private extension LoginViewController {
     }
 }
 
+// MARK: - Saving Login Data
+
+private extension LoginViewController {
+    
+    func loadAuthData() -> AuthInfo? {
+        if
+            let authData = UserDefaults.standard.data(
+                forKey: Constants.Defaults.authInfo.rawValue
+            ),
+            let authInfo = try? decoder.decode(AuthInfo.self, from: authData)
+        {
+            return authInfo
+        }
+        
+        return nil
+    }
+    
+    func loadUserData() -> UserResponse? {
+        if
+            let userData = UserDefaults.standard.data(
+                forKey: Constants.Defaults.userResponse.rawValue
+            ),
+            let userResponse = try? decoder.decode(UserResponse.self, from: userData)
+        {
+            return userResponse
+        }
+        return nil
+    }
+    
+    func saveAuthInfo(state: AuthInfo) {
+        if let encoded = try? encoder.encode(state) {
+            UserDefaults.standard.set(
+                encoded,
+                forKey: Constants.Defaults.authInfo.rawValue
+            )
+        }
+    }
+    
+    func saveUserData(state: UserResponse) {
+        if let encoded = try? encoder.encode(state) {
+            UserDefaults.standard.set(
+                encoded,
+                forKey: Constants.Defaults.userResponse.rawValue
+            )
+        }
+    }
+}
+
 // MARK: - IBActions
 
 private extension LoginViewController {
@@ -90,12 +155,21 @@ private extension LoginViewController {
                 guard let self = self else { return }
                 
                 if let userResponse = usrResponse {
+                    // creating instance of HomeViewController
                     let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
                     let authInfo = try? AuthInfo(headers: response.response?.headers.dictionary ?? [:])
                     let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
                     
+                    // passing data to HomeViewController
                     homeViewController.userResponse = userResponse
                     homeViewController.authInfo = authInfo
+                    
+                    // saving login data to UserDefaults
+                    if self.rememberMeButton.state == .selected {
+                        self.saveAuthInfo(state: authInfo!)
+                        self.saveUserData(state: userResponse)
+                    }
+                    
                     self.navigationController?.setViewControllers([homeViewController], animated: true)
                 } else {
                     self.animateTextField((self.passwordTextField)!)
