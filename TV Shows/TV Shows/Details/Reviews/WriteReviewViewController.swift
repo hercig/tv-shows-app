@@ -44,6 +44,7 @@ private extension WriteReviewViewController {
             target: self,
             action: #selector(didSelectClose)
         )
+        navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.3985282183, green: 0.2966387272, blue: 0.6185286641, alpha: 1)
         
         ratingView.configure(withStyle: .large)
         ratingView.isEnabled = true

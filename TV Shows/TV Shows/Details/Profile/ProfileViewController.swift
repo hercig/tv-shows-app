@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var profileImage: UIImageView!
+    @IBOutlet private weak var logoutButton: UIButton!
     
     var user: User!
 
@@ -36,13 +37,15 @@ private extension ProfileViewController {
             target: self,
             action: #selector(didSelectClose)
         )
+        navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.3985282183, green: 0.2966387272, blue: 0.6185286641, alpha: 1)
         
         emailLabel.text = user.email
         profileImage.kf.setImage(
             with: URL(string: user.imageUrl ?? ""),
             placeholder: UIImage(named: "ic-profile-placeholder")
         )
-        
+        logoutButton.layer.cornerRadius = 21.5
+        logoutButton.clipsToBounds = true
     }
 }
 

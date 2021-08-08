@@ -19,7 +19,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="920-71-xWL">
                                 <rect key="frame" x="20" y="69" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -40,6 +40,17 @@
                                     <color key="titleColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRt-le-ACF">
+                                <rect key="frame" x="20" y="260" width="374" height="48"/>
+                                <color key="backgroundColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="EFe-H1-KSA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -47,14 +58,18 @@
                             <constraint firstItem="920-71-xWL" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="25" id="72U-7c-jvs"/>
                             <constraint firstItem="xuD-cY-pDV" firstAttribute="leading" secondItem="TOO-Bb-AMr" secondAttribute="trailing" constant="19" id="Fiq-T9-qRM"/>
                             <constraint firstItem="TOO-Bb-AMr" firstAttribute="top" secondItem="920-71-xWL" secondAttribute="bottom" constant="25" id="JnW-oj-KnH"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hRt-le-ACF" secondAttribute="trailing" constant="20" id="L1z-wc-6WH"/>
                             <constraint firstItem="920-71-xWL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="LA4-Bt-Ck1"/>
                             <constraint firstItem="xuD-cY-pDV" firstAttribute="centerY" secondItem="TOO-Bb-AMr" secondAttribute="centerY" id="RHF-u7-v6p"/>
                             <constraint firstItem="TOO-Bb-AMr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="V2K-Xm-5sA"/>
+                            <constraint firstItem="hRt-le-ACF" firstAttribute="top" secondItem="TOO-Bb-AMr" secondAttribute="bottom" constant="45" id="ZAJ-Rk-xS7"/>
+                            <constraint firstItem="hRt-le-ACF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="qZ8-WJ-93y"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="920-71-xWL" secondAttribute="trailing" constant="20" id="u4p-bn-IRO"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emailLabel" destination="920-71-xWL" id="XEc-tb-XSw"/>
+                        <outlet property="logoutButton" destination="hRt-le-ACF" id="vSF-b1-zep"/>
                         <outlet property="profileImage" destination="TOO-Bb-AMr" id="Iir-nr-QVI"/>
                     </connections>
                 </viewController>
