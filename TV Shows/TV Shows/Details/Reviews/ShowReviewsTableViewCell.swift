@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ShowReviewsTableViewCell: UITableViewCell {
     
@@ -23,7 +24,13 @@ class ShowReviewsTableViewCell: UITableViewCell {
     func configure(with review: Review) {
         commentLabel.text = review.comment
         commentEmail.text = review.user.email
-        commentImage.image = UIImage(named: "ic-profile-placeholder")
+        commentImage.layer.cornerRadius = 25
+        commentImage.clipsToBounds = true
+        commentImage.kf.setImage(
+            with: URL(string: review.user.imageUrl ?? ""),
+            placeholder: UIImage(named: "ic-profile-placeholder")
+        )
+        
         ratingView.setRoundedRating(Double(review.rating))
     }
 }
