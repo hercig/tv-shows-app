@@ -119,4 +119,36 @@ class Network {
                 }
             }
     }
+    
+    
+    func storeImage(_ image: UIImage, with auth: AuthInfo) {
+        guard let imageData = image.jpegData(compressionQuality: 0.9)
+        else { return }
+        
+        let requestData = MultipartFormData()
+        
+        requestData.append(
+            imageData,
+            withName: "image",
+            fileName: "image.jpg",
+            mimeType: "image/jpg"
+        )
+        
+        AF
+            .upload(
+                multipartFormData: requestData,
+                to: "https://tv-shows.infinum.academy/users",
+                method: .put,
+                headers: HTTPHeaders(auth.headers)
+            )
+            .validate()
+            .responseDecodable(of: UserResponse.self) { dataResponse in
+                switch dataResponse.result {
+                    case .success(let body):
+                        print(body)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                }
+            }
+    }
 }

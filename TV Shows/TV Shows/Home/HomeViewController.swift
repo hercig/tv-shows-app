@@ -46,11 +46,14 @@ class HomeViewController: UIViewController {
     
     @objc
     private func profileDetailsActionHandler() {
-        network.getMyInfo(with: authInfo!, statusHandler: { response in
+        network.getMyInfo(with: authInfo!, statusHandler: { [weak self] response in
+            guard let self = self else { return }
+            
             let profileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
             let profileViewController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
             let navController = UINavigationController(rootViewController: profileViewController)
             profileViewController.user = response.user
+            profileViewController.authInfo = self.authInfo
             self.present(navController, animated:true)
         })
     }

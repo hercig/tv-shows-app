@@ -39,6 +39,9 @@
                                 <state key="normal" title="Change Profile Photo">
                                     <color key="titleColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="didPressChangeProfilePhoto" destination="Y6W-OH-hqX" eventType="touchUpInside" id="pnM-mI-x02"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRt-le-ACF">
                                 <rect key="frame" x="20" y="260" width="374" height="48"/>
