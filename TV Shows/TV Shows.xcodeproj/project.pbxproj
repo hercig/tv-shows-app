@@ -30,6 +30,8 @@
 		4EE1C74C26B2A2630067869A /* ShowReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE1C74B26B2A2630067869A /* ShowReviewsTableViewCell.swift */; };
 		4EE1C74E26B2C05A0067869A /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE1C74D26B2C05A0067869A /* RatingView.swift */; };
 		4EE1C75126B2C9E20067869A /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE1C75026B2C9E20067869A /* Review.swift */; };
+		4EF80AA826BFB9FE00D51AB9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF80AA726BFB9FE00D51AB9 /* Profile.storyboard */; };
+		4EF80AAA26BFCEC200D51AB9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF80AA926BFCEC200D51AB9 /* ProfileViewController.swift */; };
 		E011A81AFF60E51DBC98F7CA /* Pods_TV_Shows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217FA2252093F851D9237ECC /* Pods_TV_Shows.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 		4EE1C74B26B2A2630067869A /* ShowReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		4EE1C74D26B2C05A0067869A /* RatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		4EE1C75026B2C9E20067869A /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		4EF80AA726BFB9FE00D51AB9 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		4EF80AA926BFCEC200D51AB9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		62F6EF5B27709957104F8D0C /* Pods-TV Shows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TV Shows.release.xcconfig"; path = "Target Support Files/Pods-TV Shows/Pods-TV Shows.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +140,7 @@
 		4EAA74E526B2979800135E85 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				4EF80AA626BFB9E900D51AB9 /* Profile */,
 				4EE1C74F26B2C9B80067869A /* Reviews */,
 				4EAA74E826B298DB00135E85 /* ShowDetails.storyboard */,
 				4EAA74E626B297B600135E85 /* ShowDetailsViewController.swift */,
@@ -163,6 +168,15 @@
 				4ED4132526BC6BF500A03BF0 /* WriteReview.storyboard */,
 			);
 			path = Reviews;
+			sourceTree = "<group>";
+		};
+		4EF80AA626BFB9E900D51AB9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4EF80AA726BFB9FE00D51AB9 /* Profile.storyboard */,
+				4EF80AA926BFCEC200D51AB9 /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		9C98E69AAE67A08803AD1498 /* Pods */ = {
@@ -246,6 +260,7 @@
 				4E29499726A333CF00982A44 /* LaunchScreen.storyboard in Resources */,
 				4E02611426975F3E005FCF82 /* Assets.xcassets in Resources */,
 				4EAA74E926B298DB00135E85 /* ShowDetails.storyboard in Resources */,
+				4EF80AA826BFB9FE00D51AB9 /* Profile.storyboard in Resources */,
 				4E91E4E426A6D6E600A6C7FE /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +320,7 @@
 				4EAB10C726B023AB004A192B /* Shows.swift in Sources */,
 				4E91E4EA26A7181200A6C7FE /* User.swift in Sources */,
 				4ED4132226BBDA4500A03BF0 /* WriteReviewTableViewCell.swift in Sources */,
+				4EF80AAA26BFCEC200D51AB9 /* ProfileViewController.swift in Sources */,
 				4EB4847626A829C2008C4982 /* Networking.swift in Sources */,
 				4ED4132426BBDD5D00A03BF0 /* WriteReviewViewController.swift in Sources */,
 				4E91E4E826A6E8DB00A6C7FE /* LoginViewController+Styles.swift in Sources */,

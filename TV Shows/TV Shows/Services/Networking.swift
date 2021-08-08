@@ -97,4 +97,26 @@ class Network {
                 }
         }
     }
+    
+    func getMyInfo(with auth: AuthInfo, statusHandler: @escaping (UserResponse) -> Void) {
+        SVProgressHUD.show()
+        AF
+            .request(
+                urlBase + "/users/me",
+                method: .get,
+                parameters: [:],
+                headers: HTTPHeaders(auth.headers)
+            )
+            .validate()
+            .responseDecodable(of: UserResponse.self) { response in
+                switch response.result {
+                case .success(let userResponse):
+                    statusHandler(userResponse)
+                    SVProgressHUD.dismiss()
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                    SVProgressHUD.dismiss()
+                }
+            }
+    }
 }

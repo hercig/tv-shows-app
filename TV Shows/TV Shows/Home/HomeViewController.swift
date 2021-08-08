@@ -14,21 +14,50 @@ class HomeViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     private var shows: [Show] = []
-    let network = Network()
+    private let network = Network()
     var userResponse: UserResponse?
     var authInfo: AuthInfo?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         getShowsList()
+        
+        // Add navigation item
+        let profileDetailsItem = UIBarButtonItem(
+            image: UIImage(named: "ic-profile"),
+            style: .plain,
+            target: self,
+            action: #selector(profileDetailsActionHandler)
+        )
+        
+        profileDetailsItem.tintColor = #colorLiteral(red: 0.3985282183, green: 0.2966387272, blue: 0.6185286641, alpha: 1)
+        navigationItem.rightBarButtonItem = profileDetailsItem
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    @objc
+    private func profileDetailsActionHandler() {
+        network.getMyInfo(with: authInfo!, statusHandler: { response in
+            
+            // REVIEW
+            let profileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+            let profileViewController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+            let navController = UINavigationController(rootViewController: profileViewController)
+            
+            profileViewController.user = response.user
+            
+            self.present(navController, animated:true)
+            
+        })
     }
 }
 

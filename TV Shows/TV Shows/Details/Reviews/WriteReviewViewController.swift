@@ -80,6 +80,8 @@ private extension WriteReviewViewController {
             guard let self = self else { return }
             if isSuccesful {
                 self.didSelectClose()
+            } else {
+                // TODO: - Create UIAlert
             }
         })
     }

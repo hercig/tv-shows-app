@@ -27,7 +27,5 @@ class ShowTableViewCell: UITableViewCell {
             with: imageUrl,
             placeholder: UIImage(named: "ic-show-placeholder-vertical")
         )
-
     }
-
 }
