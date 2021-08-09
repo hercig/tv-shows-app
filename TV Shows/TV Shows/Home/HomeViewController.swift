@@ -15,10 +15,10 @@ class HomeViewController: UIViewController {
     
     private var shows: [Show] = []
     private let network = Network()
+    private var notificationToken: NSObjectProtocol?
     var userResponse: UserResponse?
     var authInfo: AuthInfo?
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -35,7 +35,21 @@ class HomeViewController: UIViewController {
         
         profileDetailsItem.tintColor = #colorLiteral(red: 0.3985282183, green: 0.2966387272, blue: 0.6185286641, alpha: 1)
         navigationItem.rightBarButtonItem = profileDetailsItem
-
+        
+        notificationToken = NotificationCenter
+            .default
+            .addObserver(
+                forName: Notification.Name(Constants.Notification.didLogout.rawValue),
+                object: nil,
+                queue: nil,
+                using: { [weak self] _ in
+                    guard let self = self else { return }
+                    
+                    let loginStoaryboard = UIStoryboard(name: "Login", bundle: nil)
+                    let loginViewController = loginStoaryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                    self.navigationController?.setViewControllers([loginViewController], animated: true)
+                }
+            )
     }
 
     override func viewWillAppear(_ animated: Bool) {

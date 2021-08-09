@@ -79,4 +79,24 @@ private extension ProfileViewController {
                 
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    @IBAction func didPressLogoutButton() {
+        dismiss(animated: true, completion: {
+            UserDefaults.standard.removeObject(
+                forKey: Constants.Defaults.authInfo.rawValue
+            )
+            
+            UserDefaults.standard.removeObject(
+                forKey: Constants.Defaults.userResponse.rawValue
+            )
+            
+            NotificationCenter.default.post(
+                Notification(
+                    name: Notification.Name(
+                        rawValue: Constants.Notification.didLogout.rawValue
+                    )
+                )
+            )
+        })
+    }
 }

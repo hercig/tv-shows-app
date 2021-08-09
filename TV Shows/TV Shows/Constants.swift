@@ -13,4 +13,8 @@ enum Constants {
         case authInfo
         case userResponse
     }
+    
+    enum Notification: String {
+        case didLogout
+    }
 }

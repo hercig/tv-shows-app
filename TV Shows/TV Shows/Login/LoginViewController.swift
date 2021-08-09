@@ -45,8 +45,6 @@ final class LoginViewController: UIViewController {
             homeViewController.userResponse = userRespose
             
             navigationController?.setViewControllers([homeViewController], animated: true)
-        } else {
-            print("Nema DATEEEEE")
         }
     }
     
