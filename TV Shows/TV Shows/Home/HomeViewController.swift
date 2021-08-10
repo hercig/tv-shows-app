@@ -71,6 +71,10 @@ class HomeViewController: UIViewController {
             self.present(navController, animated:true)
         })
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(notificationToken!)
+    }
 }
 
 // MARK: - UI setup
