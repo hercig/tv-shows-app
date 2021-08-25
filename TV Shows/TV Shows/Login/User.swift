@@ -8,11 +8,11 @@
 import Foundation
 
 
-struct UserResponse: Decodable {
+struct UserResponse: Codable {
     let user: User
 }
 
-struct User: Decodable {
+struct User: Codable {
     let email: String
     let imageUrl: String?
     let id: String
