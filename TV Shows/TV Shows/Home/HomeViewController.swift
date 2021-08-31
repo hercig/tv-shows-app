@@ -77,6 +77,7 @@ class HomeViewController: UIViewController {
     }
 }
 
+
 // MARK: - UI setup
 
 private extension HomeViewController {
