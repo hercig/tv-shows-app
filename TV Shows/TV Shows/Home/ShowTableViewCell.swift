@@ -22,7 +22,7 @@ class ShowTableViewCell: UITableViewCell {
     func configure(with show: Show) {
         self.show = show
         showTitle.text = show.title
-        let imageUrl = URL(string: show.imageUrl)
+        let imageUrl = show.imageUrl
         showImage.kf.setImage(
             with: imageUrl,
             placeholder: UIImage(named: "ic-show-placeholder-vertical")
