@@ -1,13 +1,18 @@
 //
-//  Review.swift
+//  Reviews.swift
 //  TV Shows
 //
-//  Created by Filip Hercig on 29.07.2021..
+//  Created by Filip Hercig on 07.06.2022..
 //
 
 import Foundation
 
+struct Reviews: Decodable {
+    let reviews: [Review]
+}
+
 struct Review: Decodable {
+    
     let id: String
     let comment: String
     let rating: Int
@@ -21,8 +26,4 @@ struct Review: Decodable {
         case showId = "show_id"
         case user
     }
-}
-
-struct ReviewResponse: Decodable {
-    let reviews: [Review]
 }
