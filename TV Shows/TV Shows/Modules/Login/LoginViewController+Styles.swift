@@ -11,8 +11,11 @@ extension LoginViewController {
     
     func editTextFieldStyle(of field: UITextField, placeholder: String = "") {
         
-        // Changing placeholder style
-        let placeholderText = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
+        // Changing placeholder opacity
+        let placeholderText = NSAttributedString(
+            string: placeholder,
+            attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.5)]
+        )
         field.attributedPlaceholder = placeholderText
         
         // Adding bottom border line

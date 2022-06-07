@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Constants {
+enum AppConstants {
     
     enum Defaults: String {
         case authInfo

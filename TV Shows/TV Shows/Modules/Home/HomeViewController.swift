@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    private var shows: [Show] = []
+    private var shows: [Model.Show] = []
     private let network = Network()
     private var notificationToken: NSObjectProtocol?
     var userResponse: UserResponse?
@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
         notificationToken = NotificationCenter
             .default
             .addObserver(
-                forName: Notification.Name(Constants.Notification.didLogout.rawValue),
+                forName: Notification.Name(AppConstants.Notification.didLogout.rawValue),
                 object: nil,
                 queue: nil,
                 using: { [weak self] _ in
@@ -97,7 +97,7 @@ private extension HomeViewController {
         })
     }
     
-    func navigateToShowDetails(for show: Show) {
+    func navigateToShowDetails(for show: Model.Show) {
         let storyboard = UIStoryboard(name: "ShowDetails", bundle: .main)
         let showDetailsViewController = storyboard.instantiateViewController(
             withIdentifier: String(describing: ShowDetailsViewController.self)

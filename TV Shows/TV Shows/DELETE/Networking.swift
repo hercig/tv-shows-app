@@ -41,7 +41,7 @@ class Network {
     }
     
     
-    func getShow(with auth: AuthInfo, statusHandler: @escaping (DataResponse<ShowsResponse, AFError>) -> Void) {
+    func getShow(with auth: AuthInfo, statusHandler: @escaping (DataResponse<Model.Shows, AFError>) -> Void) {
         AF
             .request(
                 urlBase + "/shows",
@@ -50,12 +50,12 @@ class Network {
                 headers: HTTPHeaders(auth.headers)
             )
             .validate()
-            .responseDecodable(of: ShowsResponse.self) { response in
+            .responseDecodable(of: Model.Shows.self) { response in
                 statusHandler(response)
             }
     }
     
-    func getReviews(for show: Show, with auth: AuthInfo, statusHandler: @escaping (DataResponse<ReviewResponse, AFError>) -> Void) {
+    func getReviews(for show: Model.Show, with auth: AuthInfo, statusHandler: @escaping (DataResponse<Model.Reviews, AFError>) -> Void) {
         SVProgressHUD.show()
         AF
             .request(
@@ -65,7 +65,7 @@ class Network {
                 headers: HTTPHeaders(auth.headers)
             )
             .validate()
-            .responseDecodable(of: ReviewResponse.self) { response in
+            .responseDecodable(of: Model.Reviews.self) { response in
                 statusHandler(response)
             }
     }

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct UserResponse: Codable {
     let user: User
 }

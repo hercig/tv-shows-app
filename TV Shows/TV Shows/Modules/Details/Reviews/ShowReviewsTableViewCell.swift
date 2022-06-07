@@ -21,7 +21,7 @@ class ShowReviewsTableViewCell: UITableViewCell {
         ratingView.isEnabled = false
     }
     
-    func configure(with review: Review) {
+    func configure(with review: Model.Review) {
         commentLabel.text = review.comment
         commentEmail.text = review.user.email
         commentImage.layer.cornerRadius = 25

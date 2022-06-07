@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let pickedImage = info[.originalImage] as? UIImage {
             profileImage.contentMode = .scaleAspectFit
             profileImage.image = pickedImage
             network.storeImage(pickedImage, with: authInfo)
@@ -83,17 +83,17 @@ private extension ProfileViewController {
     @IBAction func didPressLogoutButton() {
         dismiss(animated: true, completion: {
             UserDefaults.standard.removeObject(
-                forKey: Constants.Defaults.authInfo.rawValue
+                forKey: AppConstants.Defaults.authInfo.rawValue
             )
             
             UserDefaults.standard.removeObject(
-                forKey: Constants.Defaults.userResponse.rawValue
+                forKey: AppConstants.Defaults.userResponse.rawValue
             )
             
             NotificationCenter.default.post(
                 Notification(
                     name: Notification.Name(
-                        rawValue: Constants.Notification.didLogout.rawValue
+                        rawValue: AppConstants.Notification.didLogout.rawValue
                     )
                 )
             )

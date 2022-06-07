@@ -9,7 +9,8 @@ import Foundation
 import Alamofire
 import RxSwift
 
-class APIClient {
+final class APIClient {
+    
     static let shared = APIClient()
     private let decoder = JSONDecoder()
     

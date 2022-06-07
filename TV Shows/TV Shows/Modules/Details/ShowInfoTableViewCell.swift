@@ -20,7 +20,7 @@ class ShowInfoTableViewCell: UITableViewCell {
         ratingView.isEnabled = false
     }
     
-    func configure(with show: Show) {
+    func configure(with show: Model.Show) {
         showDescription.text = show.description
         ratingView.setRoundedRating(Double(show.averageRating ?? 0))
         if show.noOfReviews != 0 {

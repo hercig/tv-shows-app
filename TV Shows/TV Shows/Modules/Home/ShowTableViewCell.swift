@@ -10,7 +10,7 @@ import Kingfisher
 
 class ShowTableViewCell: UITableViewCell {
     
-    var show: Show!
+    var show: Model.Show!
     
     @IBOutlet private weak var showTitle: UILabel!
     @IBOutlet private weak var showImage: UIImageView!
@@ -19,7 +19,7 @@ class ShowTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func configure(with show: Show) {
+    func configure(with show: Model.Show) {
         self.show = show
         showTitle.text = show.title
         let imageUrl = show.imageUrl

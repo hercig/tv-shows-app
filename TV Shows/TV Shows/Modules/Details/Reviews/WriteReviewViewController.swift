@@ -15,7 +15,7 @@ class WriteReviewViewController: UIViewController {
     @IBOutlet private weak var commentField: UITextView!
     
     private let network = Network()
-    var show: Show?
+    var show: Model.Show?
     var authInfo: AuthInfo?
     
     override func viewDidLoad() {

@@ -12,9 +12,9 @@ class ShowDetailsViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    var show: Show?
+    var show: Model.Show?
     var authInfo: AuthInfo?
-    private var reviews: [Review] = []
+    private var reviews: [Model.Review] = []
     private let network = Network()
     
     override func viewWillAppear(_ animated: Bool) {
