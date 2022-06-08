@@ -16,7 +16,7 @@ class WriteReviewViewController: UIViewController {
     
     private let network = Network()
     var show: Model.Show?
-    var authInfo: AuthInfo?
+    var authInfo: Model.AuthInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()

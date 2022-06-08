@@ -19,7 +19,7 @@ class Network {
     
     private let urlBase = "https://tv-shows.infinum.academy"
     
-    func loginRegisterRequest(on url: String, with params: [String: String], statusHandler: @escaping (UserResponse?, AFError?, DataResponse<UserResponse, AFError>) -> Void) {
+    func loginRegisterRequest(on url: String, with params: [String: String], statusHandler: @escaping (Model.UserResponse?, AFError?, DataResponse<Model.UserResponse, AFError>) -> Void) {
         AF
             .request(
                 urlBase + url,
@@ -28,7 +28,7 @@ class Network {
                 encoder: JSONParameterEncoder.default
             )
             .validate()
-            .responseDecodable(of: UserResponse.self) { response in
+            .responseDecodable(of: Model.UserResponse.self) { response in
                 switch response.result {
                     case .success(let userResponse):
                         SVProgressHUD.dismiss()
@@ -41,7 +41,7 @@ class Network {
     }
     
     
-    func getShow(with auth: AuthInfo, statusHandler: @escaping (DataResponse<Model.Shows, AFError>) -> Void) {
+    func getShow(with auth: Model.AuthInfo, statusHandler: @escaping (DataResponse<Model.Shows, AFError>) -> Void) {
         AF
             .request(
                 urlBase + "/shows",
@@ -55,7 +55,7 @@ class Network {
             }
     }
     
-    func getReviews(for show: Model.Show, with auth: AuthInfo, statusHandler: @escaping (DataResponse<Model.Reviews, AFError>) -> Void) {
+    func getReviews(for show: Model.Show, with auth: Model.AuthInfo, statusHandler: @escaping (DataResponse<Model.Reviews, AFError>) -> Void) {
         SVProgressHUD.show()
         AF
             .request(
@@ -70,7 +70,7 @@ class Network {
             }
     }
     
-    func submitShowReview(with params: ReviewParameters, auth: AuthInfo, statusHandler: @escaping (Bool) -> Void) {
+    func submitShowReview(with params: ReviewParameters, auth: Model.AuthInfo, statusHandler: @escaping (Bool) -> Void) {
         SVProgressHUD.show()
         let requestParameters = params
         let encoder = JSONEncoder()
@@ -98,7 +98,7 @@ class Network {
         }
     }
     
-    func getMyInfo(with auth: AuthInfo, statusHandler: @escaping (UserResponse) -> Void) {
+    func getMyInfo(with auth: Model.AuthInfo, statusHandler: @escaping (Model.UserResponse) -> Void) {
         SVProgressHUD.show()
         AF
             .request(
@@ -108,7 +108,7 @@ class Network {
                 headers: HTTPHeaders(auth.headers)
             )
             .validate()
-            .responseDecodable(of: UserResponse.self) { response in
+            .responseDecodable(of: Model.UserResponse.self) { response in
                 switch response.result {
                 case .success(let userResponse):
                     statusHandler(userResponse)
@@ -121,7 +121,7 @@ class Network {
     }
     
     
-    func storeImage(_ image: UIImage, with auth: AuthInfo) {
+    func storeImage(_ image: UIImage, with auth: Model.AuthInfo) {
         guard let imageData = image.jpegData(compressionQuality: 0.9)
         else { return }
         
@@ -142,7 +142,7 @@ class Network {
                 headers: HTTPHeaders(auth.headers)
             )
             .validate()
-            .responseDecodable(of: UserResponse.self) { dataResponse in
+            .responseDecodable(of: Model.UserResponse.self) { dataResponse in
                 switch dataResponse.result {
                     case .success(let body):
                         print(body)

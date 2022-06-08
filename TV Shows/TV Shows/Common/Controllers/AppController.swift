@@ -28,10 +28,10 @@ final class AppController {
 
 extension AppController {
     func startApp() {
-//        let homeRouter = HomeRouter()
-//        let homeViewModel = HomeViewModel(router: homeRouter)
-        let loginViewController = LoginViewController()
-//        homeRouter.viewController = homeViewController
+        let loginRouter = LoginRouter()
+        let loginViewModel = LoginViewModel(router: loginRouter)
+        let loginViewController = LoginViewController(viewModel: loginViewModel)
+        loginRouter.viewController = loginViewController
         
         navigationController?.setViewControllers([loginViewController], animated: true)
     }

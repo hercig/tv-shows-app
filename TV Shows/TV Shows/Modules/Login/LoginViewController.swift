@@ -9,8 +9,13 @@ import UIKit
 import SnapKit
 import Alamofire // TODO: Remove this
 import SVProgressHUD
+import RxSwift
+import RxCocoa
 
 final class LoginViewController: UIViewController {
+    
+    private let disposeBag = DisposeBag()
+    private let viewModel: LoginViewModeling
     
     private lazy var topLeftSplashImageView: UIImageView = {
         let imageView = UIImageView()
@@ -49,60 +54,89 @@ final class LoginViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17)
         label.textColor = .white
-        label.text = "in order to continue please log in"
+        label.text = "In order to continue please log in"
         
         return label
     }()
     
-    private lazy var emailTextField: UITextField = {
+    private lazy var emailTextField: PaddedTextField = {
         let field = PaddedTextField()
-        editTextFieldStyle(of: field, placeholder: "Email")
+        field.textColor = .white
+        field.autocapitalizationType = .none
+        field.keyboardType = .emailAddress
+        field.addBottomLine()
+        field.addAtributtedPlaceholder("Email")
         
         return field
     }()
     
-    private lazy var passwordTextField: UITextField = {
+    private lazy var passwordTextField: PaddedTextField = {
         let field = PaddedTextField()
+        field.textColor = .white
+        field.autocapitalizationType = .none
         field.isSecureTextEntry = true
-        editTextFieldStyle(of: passwordTextField, placeholder: "Password")
+        field.addBottomLine()
+        field.addAtributtedPlaceholder("Password")
         
         return field
     }()
     
+    private lazy var rememberMeCheckboxButton: UIButton = {
+        let button = UIButton()
+        button.setImage(Assets.checkboxUnselected.image, for: .normal)
+        button.setImage(Assets.checkboxSelected.image, for: .selected)
+        
+        return button
+    }()
     
-//    @IBOutlet private weak var rememberMeButton: UIButton!
-//    @IBOutlet private weak var loginButton: UIButton!
-
-//    private let encoder = PropertyListEncoder()
-//    private let decoder = PropertyListDecoder()
-//    private var rememberMeIsActive = false
-//    let network = Network()
+    private lazy var rememberMeHintLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Remember me"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 17)
+        
+        return label
+    }()
+    
+    private lazy var loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .white
+        button.setTitle("Login", for: .normal)
+        button.setTitleColor(UIColor.appPurple, for: .normal)
+        button.layer.cornerRadius = 22
+        button.clipsToBounds = true
+        
+        return button
+    }()
+    
+    private lazy var registerButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Register", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        
+        return button
+    }()
+    
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         addSubviews()
         setConstraints()
-        
-//        roundButtonEdges(of: loginButton)
-//        setupUI()
+        observe()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        
-//        if
-//            let authInfo = loadAuthData(),
-//            let userRespose = loadUserData()
-//        {
-//            let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
-//            let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-//            homeViewController.authInfo = authInfo
-//            homeViewController.userResponse = userRespose
-//
-//            navigationController?.setViewControllers([homeViewController], animated: true)
-//        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -116,7 +150,7 @@ final class LoginViewController: UIViewController {
 private extension LoginViewController {
     
     func setupUI() {
-        view.backgroundColor = .green
+        view.backgroundColor = .appPurple
     }
     
     func addSubviews() {
@@ -126,7 +160,11 @@ private extension LoginViewController {
         view.addSubview(loginTitleLabel)
         view.addSubview(loginSubtitleLabel)
         view.addSubview(emailTextField)
-//        view.addSubview(passwordTextField)
+        view.addSubview(passwordTextField)
+        view.addSubview(rememberMeCheckboxButton)
+        view.addSubview(rememberMeHintLabel)
+        view.addSubview(loginButton)
+        view.addSubview(registerButton)
     }
     
     func setConstraints() {
@@ -166,38 +204,75 @@ private extension LoginViewController {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(48)
         }
+        
+        passwordTextField.snp.remakeConstraints {
+            $0.top.equalTo(emailTextField.snp.bottom).offset(25)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(48)
+        }
+        
+        rememberMeCheckboxButton.snp.remakeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().offset(20)
+            $0.width.height.equalTo(28)
+        }
+        
+        rememberMeHintLabel.snp.remakeConstraints {
+            $0.centerY.equalTo(rememberMeCheckboxButton)
+            $0.leading.equalTo(rememberMeCheckboxButton.snp.trailing).offset(6)
+        }
+        
+        loginButton.snp.remakeConstraints {
+            $0.top.equalTo(rememberMeCheckboxButton.snp.bottom).offset(30)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(44)
+        }
+        
+        registerButton.snp.remakeConstraints {
+            $0.top.equalTo(loginButton.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(40)
+        }
+    }
+    
+    func observe() {
+        rememberMeCheckboxButton
+            .rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.rememberMeCheckboxButton.isSelected.toggle()
+            })
+            .disposed(by: disposeBag)
+        
+        loginButton
+            .rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                
+                self.viewModel.handleLoginButtonTap(
+                    username: self.emailTextField.text,
+                    password: self.passwordTextField.text
+                )
+            })
+            .disposed(by: disposeBag)
+        
+        registerButton
+            .rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                
+                self.viewModel.handleRegisterButtonTap(
+                    username: self.emailTextField.text,
+                    password: self.passwordTextField.text
+                )
+            })
+            .disposed(by: disposeBag)
     }
 }
 
-// MARK: - Style
-
-private extension LoginViewController {
-    
-    func getTextFielsValue(of textField: UITextField) -> String? {
-        let value = textField.text
-        return value
-    }
-    
-//    func setupUI() {
-//        rememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
-//        rememberMeButton.setImage(UIImage(named: "ic-checkbox-selected"), for: .selected)
-//    }
-    
-    func animateTextField(_ field: UITextField) {
-        let animation = CABasicAnimation(keyPath: "position")
-        animation.duration = 0.07
-        animation.repeatCount = 3
-        animation.autoreverses = true
-        animation.fromValue = NSValue(cgPoint: CGPoint(x: field.center.x - 10, y: field.center.y))
-        animation.toValue = NSValue(cgPoint: CGPoint(x: field.center.x + 10, y: field.center.y))
-
-        field.layer.add(animation, forKey: "position")
-    }
-}
 
 // MARK: - Saving Login Data
 
-private extension LoginViewController {
+//private extension LoginViewController {
     
 //    func loadAuthData() -> AuthInfo? {
 //        if
@@ -241,15 +316,11 @@ private extension LoginViewController {
 //            )
 //        }
 //    }
-}
+//}
 
 // MARK: - IBActions
 
 private extension LoginViewController {
-    
-    @IBAction func rememberMeButtonTap(_ sender: Any) {
-//        rememberMeButton.isSelected.toggle()
-    }
     
     @IBAction func didPressLoginButton(_ sender: Any) {
         SVProgressHUD.show()
@@ -292,8 +363,8 @@ private extension LoginViewController {
 //        )
     }
     
-    @IBAction func didPressRegisterButton(_ sender: Any) {
-        SVProgressHUD.show()
+//    @IBAction func didPressRegisterButton(_ sender: Any) {
+//        SVProgressHUD.show()
         
 //        let params: [String: String] = [
 //            "email": getTextFielsValue(of: emailTextField) ?? "",
@@ -318,5 +389,5 @@ private extension LoginViewController {
 //                self?.present(alertController, animated: true)
 //            }
 //        })
-    }
+//    }
 }

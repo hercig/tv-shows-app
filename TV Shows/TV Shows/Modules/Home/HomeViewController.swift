@@ -16,8 +16,8 @@ class HomeViewController: UIViewController {
     private var shows: [Model.Show] = []
     private let network = Network()
     private var notificationToken: NSObjectProtocol?
-    var userResponse: UserResponse?
-    var authInfo: AuthInfo?
+    var userResponse: Model.UserResponse?
+    var authInfo: Model.AuthInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()

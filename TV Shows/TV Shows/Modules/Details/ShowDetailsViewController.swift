@@ -13,7 +13,7 @@ class ShowDetailsViewController: UIViewController, UITableViewDataSource {
     @IBOutlet private weak var tableView: UITableView!
     
     var show: Model.Show?
-    var authInfo: AuthInfo?
+    var authInfo: Model.AuthInfo?
     private var reviews: [Model.Review] = []
     private let network = Network()
     

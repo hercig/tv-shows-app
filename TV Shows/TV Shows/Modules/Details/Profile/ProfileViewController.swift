@@ -16,8 +16,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     private let imagePicker = UIImagePickerController()
     private let network = Network()
-    var user: User!
-    var authInfo: AuthInfo!
+    var user: Model.User!
+    var authInfo: Model.AuthInfo!
 
     override func viewDidLoad() {
         super.viewDidLoad()
