@@ -10,8 +10,10 @@
 		4E02610B26975F3C005FCF82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E02610A26975F3C005FCF82 /* AppDelegate.swift */; };
 		4E02611426975F3E005FCF82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E02611326975F3E005FCF82 /* Assets.xcassets */; };
 		4E29499726A333CF00982A44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E29499626A333CF00982A44 /* LaunchScreen.storyboard */; };
-		4E2949BA26A34CA700982A44 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2949B926A34CA700982A44 /* Login.storyboard */; };
 		4E2949BC26A34CC100982A44 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2949BB26A34CC100982A44 /* LoginViewController.swift */; };
+		4E3700672850FDC200AA9049 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3700662850FDC200AA9049 /* LoginRequest.swift */; };
+		4E370069285100C800AA9049 /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E370068285100C800AA9049 /* RegisterRequest.swift */; };
+		4E37006C2851067600AA9049 /* LoadStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37006B2851067600AA9049 /* LoadStatus.swift */; };
 		4E91E4E226A6C20C00A6C7FE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E91E4E126A6C20C00A6C7FE /* HomeViewController.swift */; };
 		4E91E4E426A6D6E600A6C7FE /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E91E4E326A6D6E600A6C7FE /* Home.storyboard */; };
 		4E91E4E626A6E84100A6C7FE /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E91E4E526A6E84100A6C7FE /* PaddedTextField.swift */; };
@@ -63,8 +65,10 @@
 		4E02611326975F3E005FCF82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E02611826975F3E005FCF82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E29499626A333CF00982A44 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4E2949B926A34CA700982A44 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4E2949BB26A34CC100982A44 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4E3700662850FDC200AA9049 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		4E370068285100C800AA9049 /* RegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequest.swift; sourceTree = "<group>"; };
+		4E37006B2851067600AA9049 /* LoadStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadStatus.swift; sourceTree = "<group>"; };
 		4E91E4E126A6C20C00A6C7FE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4E91E4E326A6D6E600A6C7FE /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4E91E4E526A6E84100A6C7FE /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
@@ -145,7 +149,7 @@
 				4EFE3AE2284FC33D000B873C /* Common */,
 				4EFE3B0C284FD246000B873C /* Modules */,
 				4EFE3B0D284FD27B000B873C /* Resources */,
-				4EB4847426A8297D008C4982 /* DELETE */,
+				4EB4847426A8297D008C4982 /* --DELETE-- */,
 				4E02611826975F3E005FCF82 /* Info.plist */,
 			);
 			path = "TV Shows";
@@ -154,12 +158,19 @@
 		4E2949B826A34C8D00982A44 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				4E2949B926A34CA700982A44 /* Login.storyboard */,
 				4E2949BB26A34CC100982A44 /* LoginViewController.swift */,
 				4ED8B71A285078B900286A9C /* LoginViewModel.swift */,
 				4ED8B7202850835500286A9C /* LoginRouter.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		4E37006A2851066B00AA9049 /* LoadStatus */ = {
+			isa = PBXGroup;
+			children = (
+				4E37006B2851067600AA9049 /* LoadStatus.swift */,
+			);
+			path = LoadStatus;
 			sourceTree = "<group>";
 		};
 		4E91E4DE26A6C1DF00A6C7FE /* Home */ = {
@@ -184,12 +195,12 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
-		4EB4847426A8297D008C4982 /* DELETE */ = {
+		4EB4847426A8297D008C4982 /* --DELETE-- */ = {
 			isa = PBXGroup;
 			children = (
 				4EB4847526A829C2008C4982 /* Networking.swift */,
 			);
-			path = DELETE;
+			path = "--DELETE--";
 			sourceTree = "<group>";
 		};
 		4EE1C74F26B2C9B80067869A /* Reviews */ = {
@@ -216,6 +227,7 @@
 		4EFE3AE2284FC33D000B873C /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4E37006A2851066B00AA9049 /* LoadStatus */,
 				4EFE3AE3284FC341000B873C /* API */,
 				4EFE3B0E284FD2A2000B873C /* Constants */,
 				4EFE3B0F284FE0E2000B873C /* Controllers */,
@@ -286,6 +298,8 @@
 			isa = PBXGroup;
 			children = (
 				4EFE3B09284FCE94000B873C /* ShowsRequest.swift */,
+				4E3700662850FDC200AA9049 /* LoginRequest.swift */,
+				4E370068285100C800AA9049 /* RegisterRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -428,7 +442,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ED4132626BC6BF500A03BF0 /* WriteReview.storyboard in Resources */,
-				4E2949BA26A34CA700982A44 /* Login.storyboard in Resources */,
 				4E29499726A333CF00982A44 /* LaunchScreen.storyboard in Resources */,
 				4E02611426975F3E005FCF82 /* Assets.xcassets in Resources */,
 				4EAA74E926B298DB00135E85 /* ShowDetails.storyboard in Resources */,
@@ -508,11 +521,13 @@
 				4EFE3AE7284FC391000B873C /* NetworkConstants.swift in Sources */,
 				4EFE3B00284FC67E000B873C /* ErrorResponse.swift in Sources */,
 				4EFE3AE5284FC34A000B873C /* Endpoint.swift in Sources */,
+				4E370069285100C800AA9049 /* RegisterRequest.swift in Sources */,
 				4EAA74E426B2145300135E85 /* ShowTableViewCell.swift in Sources */,
 				4EFE3AEB284FC510000B873C /* URL+.swift in Sources */,
 				4ED8B71D285078CF00286A9C /* User.swift in Sources */,
 				4E02610B26975F3C005FCF82 /* AppDelegate.swift in Sources */,
 				4EFE3B0A284FCE94000B873C /* ShowsRequest.swift in Sources */,
+				4E3700672850FDC200AA9049 /* LoginRequest.swift in Sources */,
 				4EFE3AF1284FC570000B873C /* Optional+.swift in Sources */,
 				4E91E4E226A6C20C00A6C7FE /* HomeViewController.swift in Sources */,
 				4EFE3B04284FC767000B873C /* Reviews.swift in Sources */,
@@ -523,6 +538,7 @@
 				4EE1C74A26B2A24F0067869A /* ShowInfoTableViewCell.swift in Sources */,
 				4EFE3AF5284FC5A0000B873C /* Encodable+.swift in Sources */,
 				4EFE3B08284FCE14000B873C /* ShowService.swift in Sources */,
+				4E37006C2851067600AA9049 /* LoadStatus.swift in Sources */,
 				4EFE3AF7284FC5BF000B873C /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

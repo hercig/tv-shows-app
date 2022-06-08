@@ -7,10 +7,9 @@
 
 import UIKit
 import SnapKit
-import Alamofire // TODO: Remove this
-import SVProgressHUD
 import RxSwift
 import RxCocoa
+import SVProgressHUD
 
 final class LoginViewController: UIViewController {
     
@@ -259,135 +258,18 @@ private extension LoginViewController {
             .rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
-                
                 self.viewModel.handleRegisterButtonTap(
                     username: self.emailTextField.text,
                     password: self.passwordTextField.text
                 )
             })
             .disposed(by: disposeBag)
+        
+        viewModel
+            .loadStatus
+            .subscribe(onNext: { loadStatus in
+                
+            })
+            .disposed(by: disposeBag)
     }
-}
-
-
-// MARK: - Saving Login Data
-
-//private extension LoginViewController {
-    
-//    func loadAuthData() -> AuthInfo? {
-//        if
-//            let authData = UserDefaults.standard.data(
-//                forKey: AppConstants.Defaults.authInfo.rawValue
-//            ),
-//            let authInfo = try? decoder.decode(AuthInfo.self, from: authData)
-//        {
-//            return authInfo
-//        }
-//
-//        return nil
-//    }
-//
-//    func loadUserData() -> UserResponse? {
-//        if
-//            let userData = UserDefaults.standard.data(
-//                forKey: AppConstants.Defaults.userResponse.rawValue
-//            ),
-//            let userResponse = try? decoder.decode(UserResponse.self, from: userData)
-//        {
-//            return userResponse
-//        }
-//        return nil
-//    }
-//
-//    func saveAuthInfo(state: AuthInfo) {
-//        if let encoded = try? encoder.encode(state) {
-//            UserDefaults.standard.set(
-//                encoded,
-//                forKey: AppConstants.Defaults.authInfo.rawValue
-//            )
-//        }
-//    }
-//
-//    func saveUserData(state: UserResponse) {
-//        if let encoded = try? encoder.encode(state) {
-//            UserDefaults.standard.set(
-//                encoded,
-//                forKey: AppConstants.Defaults.userResponse.rawValue
-//            )
-//        }
-//    }
-//}
-
-// MARK: - IBActions
-
-private extension LoginViewController {
-    
-    @IBAction func didPressLoginButton(_ sender: Any) {
-        SVProgressHUD.show()
-        
-        let params: [String: String] = [
-            "email": "fi.hercig@gmail.com",
-            "password": "foobar"
-//            "email": getTextFielsValue(of: emailTextField) ?? "",
-//            "password": getTextFielsValue(of: passwordTextField) ?? ""
-        ]
-        
-//        network.loginRegisterRequest(
-//            on: "/users/sign_in",
-//            with: params,
-//            statusHandler: { [weak self] (usrResponse, error, response) in
-//                guard let self = self else { return }
-//
-//                if let userResponse = usrResponse {
-//                    // creating instance of HomeViewController
-//                    let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
-//                    let authInfo = try? AuthInfo(headers: response.response?.headers.dictionary ?? [:])
-//                    let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-//
-//                    // passing data to HomeViewController
-//                    homeViewController.userResponse = userResponse
-//                    homeViewController.authInfo = authInfo
-//
-//                    // saving login data to UserDefaults
-//                    if self.rememberMeButton.state == .selected {
-//                        self.saveAuthInfo(state: authInfo!)
-//                        self.saveUserData(state: userResponse)
-//                    }
-//
-//                    self.navigationController?.setViewControllers([homeViewController], animated: true)
-//                } else {
-//                    self.animateTextField((self.passwordTextField)!)
-//                    self.animateTextField((self.emailTextField)!)
-//                }
-//            }
-//        )
-    }
-    
-//    @IBAction func didPressRegisterButton(_ sender: Any) {
-//        SVProgressHUD.show()
-        
-//        let params: [String: String] = [
-//            "email": getTextFielsValue(of: emailTextField) ?? "",
-//            "password": getTextFielsValue(of: passwordTextField) ?? "",
-//            "password_confirmation": getTextFielsValue(of: passwordTextField) ?? ""
-//        ]
-
-//        network.loginRegisterRequest(on: "/users", with: params, statusHandler: { [weak self] (usrResponse, error, response) in
-//            if usrResponse != nil {
-//                let alertController = UIAlertController(
-//                    title: "Success",
-//                    message: "Please, login with your credentials.",
-//                    preferredStyle: .alert
-//                )
-//                let OKAction = UIAlertAction(title: "OK", style: .default)
-//                alertController.addAction(OKAction)
-//                self?.present(alertController, animated: true)
-//            } else {
-//                let alertController = UIAlertController(title: "Error", message: error?.errorDescription, preferredStyle: .alert)
-//                let OKAction = UIAlertAction(title: "OK", style: .default)
-//                alertController.addAction(OKAction)
-//                self?.present(alertController, animated: true)
-//            }
-//        })
-//    }
 }

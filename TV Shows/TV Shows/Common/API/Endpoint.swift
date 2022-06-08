@@ -11,6 +11,7 @@ enum Endpoint {
     
     case fullPath(String)
     case login
+    case register
     case getShows
     case getReview(id: Int)
     case createReview
@@ -29,6 +30,8 @@ enum Endpoint {
         case .fullPath(let path):
             return path
         case .login:
+            return "/users/sign_in"
+        case .register:
             return "/users"
         case .getShows:
             return "/shows"
