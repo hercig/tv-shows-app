@@ -15,5 +15,10 @@ final class LoginRouter: LoginRouting {
     
     weak var viewController: LoginViewController?
     
-    func navigateToHomeViewController() {}
+    func navigateToHomeViewController() {
+        let homeRouter = HomeRouter()
+        let homeViewModel = HomeViewModel(router: homeRouter)
+        let homeViewController = HomeViewController()
+        viewController?.navigationController?.setViewControllers([homeViewController], animated: true)
+    }
 }

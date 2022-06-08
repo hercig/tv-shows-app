@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import Alamofire
 import RxSwift
 
 protocol ShowServicing {
-    func getShows() -> Observable<Model.Shows>
+    func getShows() -> Observable<DataResponse<Model.Shows, AFError>>
 }
 
 final class ShowService: ShowServicing {
     
-    func getShows() -> Observable<Model.Shows> {
+    func getShows() -> Observable<DataResponse<Model.Shows, AFError>> {
         let request = ShowsRequest()
         
         return APIClient

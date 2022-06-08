@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import Alamofire
 import RxSwift
 
 protocol UserServicing {
-    func loginUser(username: String, password: String) -> Observable<Model.UserResponse>
-    func registerUser(username: String, password: String) -> Observable<Model.UserResponse>
+    func loginUser(username: String, password: String) -> Observable<DataResponse<Model.UserResponse, AFError>>
+    func registerUser(username: String, password: String) -> Observable<DataResponse<Model.UserResponse, AFError>>
 }
 
 final class UserService: UserServicing {
-    func loginUser(username: String, password: String) -> Observable<Model.UserResponse> {
+    func loginUser(username: String, password: String) -> Observable<DataResponse<Model.UserResponse, AFError>> {
         let request = LoginRequest(username: username, password: password)
         
         return APIClient
@@ -23,7 +24,7 @@ final class UserService: UserServicing {
             .asObservable()
     }
     
-    func registerUser(username: String, password: String) -> Observable<Model.UserResponse> {
+    func registerUser(username: String, password: String) -> Observable<DataResponse<Model.UserResponse, AFError>> {
         let request = RegisterRequest(username: username, password: password)
         
         return APIClient

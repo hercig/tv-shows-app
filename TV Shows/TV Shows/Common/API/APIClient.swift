@@ -16,14 +16,14 @@ final class APIClient {
     
     private init() {}
     
-    func performRequest<T: APIRequest>(_ request: T) -> Single<T.ResponseType> {
-        return Single<T.ResponseType>.create { single -> Disposable in
+    func performRequest<T: APIRequest>(_ request: T) -> Single<DataResponse<T.ResponseType, AFError>> {
+        return Single<DataResponse<T.ResponseType, AFError>>.create { single -> Disposable in
             AF.request(request)
                 .validate()
                 .responseDecodable(decoder: self.decoder) { (response: DataResponse<T.ResponseType, AFError>) in
                     switch response.result {
-                    case .success(let value):
-                        single(.success(value))
+                    case .success:
+                        single(.success(response))
                     case .failure(let afError):
                         do {
                             let errorResponse = try self.decoder.decode(Model.ErrorResponse.self, from: response.data ?? Data())

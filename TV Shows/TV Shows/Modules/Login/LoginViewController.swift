@@ -268,7 +268,14 @@ private extension LoginViewController {
         viewModel
             .loadStatus
             .subscribe(onNext: { loadStatus in
-                
+                switch loadStatus {
+                case .loading:
+                    SVProgressHUD.show()
+                case .error(let error):
+                    SVProgressHUD.showError(withStatus: error.localizedDescription)
+                case .none:
+                    SVProgressHUD.dismiss()
+                }
             })
             .disposed(by: disposeBag)
     }

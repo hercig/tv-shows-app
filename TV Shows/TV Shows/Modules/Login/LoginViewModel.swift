@@ -46,11 +46,17 @@ extension LoginViewModel: LoginViewModeling {
         userService
             .loginUser(username: username, password: password)
             .subscribe(
-                onNext: { response in
-                    print(response.user.email)
+                onNext: { [weak self] response in
+                    switch response.result {
+                    case .success(let userResponse):
+                        UserDefaultsStorage.shared.currentUser = userResponse.user
+                        self?.loadStatusSubject.onNext(.none)
+                    default:
+                        break
+                    }
                 },
-                onError: { error in
-                    print(error.localizedDescription) // TODO: Handle error by displaying an alert
+                onError: { [weak self] error in
+                    self?.loadStatusSubject.onNext(.error(error))
                 }
             )
             .disposed(by: disposeBag)
@@ -64,12 +70,16 @@ extension LoginViewModel: LoginViewModeling {
             .registerUser(username: username, password: password)
             .subscribe(
                 onNext: { [weak self] response in
-                    print(response)
-                    self?.loadStatusSubject.onNext(.none)
+                    switch response.result {
+                    case .success(let userResponse):
+                        UserDefaultsStorage.shared.currentUser = userResponse.user
+                        self?.loadStatusSubject.onNext(.none)
+                    default:
+                        break
+                    }
                 },
                 onError: { [weak self] error in
-                    print(error.localizedDescription) // TODO: Handle error by displaying an alert
-                    self?.loadStatusSubject.onNext(.none)
+                    self?.loadStatusSubject.onNext(.error(error))
                 }
             )
             .disposed(by: disposeBag)

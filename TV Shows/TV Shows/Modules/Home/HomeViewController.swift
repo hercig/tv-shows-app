@@ -9,9 +9,15 @@ import UIKit
 import Alamofire
 import SVProgressHUD
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
-    @IBOutlet private weak var tableView: UITableView!
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        return tableView
+    }()
     
     private var shows: [Model.Show] = []
     private let network = Network()
@@ -21,8 +27,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         getShowsList()
         
         // Add navigation item
@@ -76,7 +80,6 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.removeObserver(notificationToken!)
     }
 }
-
 
 // MARK: - UI setup
 
