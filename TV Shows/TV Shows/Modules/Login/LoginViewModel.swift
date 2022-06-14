@@ -49,6 +49,8 @@ extension LoginViewModel: LoginViewModeling {
                 onNext: { [weak self] response in
                     switch response.result {
                     case .success(let userResponse):
+                        guard let headers = response.response?.headers.dictionary else { return }
+                        try? UserDefaultsStorage.shared.authInfo = Model.AuthInfo(headers: headers)
                         UserDefaultsStorage.shared.currentUser = userResponse.user
                         self?.loadStatusSubject.onNext(.none)
                     default:
@@ -64,6 +66,7 @@ extension LoginViewModel: LoginViewModeling {
     
     func handleRegisterButtonTap(username: String?, password: String?) {
         guard let username = username, let password = password else { return }
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLogout), name: .logoutNotification, object: nil)
         
         loadStatusSubject.onNext(.loading)
         userService
@@ -84,4 +87,14 @@ extension LoginViewModel: LoginViewModeling {
             )
             .disposed(by: disposeBag)
     }
+
+    @objc
+    private func handleLogout() {
+        // Clear userDefaults
+        // Navigate to logout screen
+    }
+}
+
+extension NSNotification.Name { 
+    static let logoutNotification = NSNotification.Name("logoutNotification")
 }

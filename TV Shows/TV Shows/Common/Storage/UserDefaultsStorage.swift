@@ -9,11 +9,14 @@ import UIKit
 
 enum UserDefaultsKey: String {
     case currentUser
+    case authInfo
     
     var key: String {
         switch self {
         case .currentUser:
             return "currentUser"
+        case .authInfo:
+            return "authInfo"
         }
     }
 }
@@ -37,6 +40,16 @@ final class UserDefaultsStorage: UserDefaultsStoring {
         }
         set {
             userDefaults.set(try? PropertyListEncoder().encode(newValue), forKey: UserDefaultsKey.currentUser.key)
+        }
+    }
+    
+    var authInfo: Model.AuthInfo? {
+        get {
+            guard let authInfo = userDefaults.data(forKey: UserDefaultsKey.authInfo.key) else { return nil }
+            return try? PropertyListDecoder().decode(Model.AuthInfo.self, from: authInfo)
+        }
+        set {
+            userDefaults.set(try? PropertyListEncoder().encode(newValue), forKey: UserDefaultsKey.authInfo.key)
         }
     }
     
